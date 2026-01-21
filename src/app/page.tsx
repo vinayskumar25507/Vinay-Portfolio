@@ -50,8 +50,8 @@ export default function Home() {
         {/* --- HERO --- */}
         <section className="mb-16 sm:mb-20 lg:mb-24">
           <GlassCard delay={0.1}>
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-6 sm:gap-8 text-center sm:text-left">
-              <div className="sm:max-w-2xl order-2 sm:order-1">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6 md:gap-8 text-center md:text-left">
+              <div className="md:max-w-2xl order-2 md:order-1">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
                   Hi, I&apos;m{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -68,9 +68,9 @@ export default function Home() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                className="shrink-0 order-1 sm:order-2 sm:ml-auto"
+                className="shrink-0 order-1 md:order-2 md:ml-auto mx-auto md:mx-0"
               >
-                <div className="rounded-full p-[2px] bg-white/10 border border-white/20 backdrop-blur-xl shadow-lg">
+                <div className="relative rounded-full p-[2px] bg-white/10 border border-white/20 backdrop-blur-xl shadow-lg">
                   <Image
                     src={profileImage}
                     alt={`${name} profile photo`}
