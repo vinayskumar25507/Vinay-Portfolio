@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { CONFIG } from "@/content";
+import { CONFIG } from "../../my-portfolio/src/content";
 import GlassCard from "@/components/GlassCard";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";

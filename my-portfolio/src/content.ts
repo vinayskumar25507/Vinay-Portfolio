@@ -20,6 +20,13 @@ export interface Certificate {
   linkToFile?: string;
 }
 
+export interface Education {
+  degree: string;
+  institution: string;
+  duration: string;
+  details: string;
+}
+
 export interface SocialLinks {
   github?: string;
   linkedin?: string;
@@ -33,6 +40,7 @@ export interface Config {
   bio: string;
   socialLinks: SocialLinks;
   skills: string[];
+  education: Education[];
   projects: Project[];
   experiences: Experience[];
   certificates: Certificate[];
@@ -49,6 +57,14 @@ export const CONFIG: Config = {
     email: "mailto:vinayskumar2557@gmail.com",
   },
   skills: ["C++", "Python", "n8n", "HTML", "CSS", "JavaScript", "MySQL"],
+  education: [
+    {
+      degree: "B.Tech in Computer Science & Engineering",
+      institution: "[Insert Your University Name]",
+      duration: "2022 - 2026",
+      details: "Specializing in Generative AI, Robotics, and Technical Market Analysis. Actively conducting meta-analysis on Autonomous AI Agents.",
+    },
+  ],
   projects: [
     {
       title: "Rio: AI Retail & Style Assistant",
