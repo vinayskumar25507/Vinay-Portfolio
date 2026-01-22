@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --body-color: #FFF1D5;
+  --box-color: #FFFFFF;
+  --skin-color: #EFBF04;
+  --title-color: #456882;
+  --text-color: #4F959D;
+  --background: var(--body-color);
+  --foreground: var(--title-color);
 }
 
 @theme inline {
@@ -12,31 +17,263 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
+  background: var(--body-color);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
+/* Elastic "Smart" Transitions - Applied to interactive elements */
+.work-card,
+.services-content,
+.about-box,
+.social-button,
+.interactive-button,
+button,
+a {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+/* Spotlight Scroll Reveal Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  33% {
-    transform: translate(30px, -30px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.animate-float {
-  animation: float 20s ease-in-out infinite;
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.scroll-reveal.revealed {
+  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.scroll-reveal.revealed h2,
+.scroll-reveal.revealed h3 {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.scroll-reveal.revealed .stagger-reveal-1 {
+  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.scroll-reveal.revealed .stagger-reveal-2 {
+  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.scroll-reveal.revealed .stagger-reveal-3 {
+  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* Name Shimmer Effect */
+@keyframes nameShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.name-shimmer {
+  background: linear-gradient(
+    90deg,
+    #9EC6F3 0%,
+    #98D2C0 25%,
+    #77E4C8 50%,
+    #EFBF04 75%,
+    #9EC6F3 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: nameShimmer 5s linear infinite;
+}
+
+/* Solar Profile Border with Pulsing Effect */
+@keyframes solarFlare {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 191, 4, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(239, 191, 4, 0.8);
+  }
+}
+
+.solar-profile {
+  border: 4px solid #EFBF04;
+  animation: solarFlare 3s ease-in-out infinite;
+}
+
+/* Work Card, Services Content, About Box Styles */
+.work-card,
+.services-content,
+.about-box {
+  background: var(--box-color) !important;
+  border: 1px solid rgba(239, 191, 4, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: background-color 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: background-color;
+}
+
+/* Informational Cards (Education/Skills/Experience) - Only Glow/White Focus on scroll, no hover movement */
+.education-card,
+.skills-card,
+.experience-card {
+  transition: background-color 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease !important;
+}
+
+.education-card:hover,
+.skills-card:hover,
+.experience-card:hover {
+  transform: none !important;
+}
+
+/* Dynamic Viewport Focus - The Gaze */
+.section-focused .work-card,
+.section-focused .services-content,
+.section-focused .about-box,
+.section-focused .education-card,
+.section-focused .project-card,
+.section-focused .certificate-card {
+  background: #FFFFFF !important;
+  border-color: #EFBF04 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 0 20px rgba(239, 191, 4, 0.2);
+}
+
+.section-dimmed .work-card,
+.section-dimmed .services-content,
+.section-dimmed .about-box,
+.section-dimmed .education-card,
+.section-dimmed .project-card,
+.section-dimmed .certificate-card {
+  background: #F3E5AB !important;
+}
+
+/* 3D Parallax Variables - Low Intensity (Max 10deg rotation, 15px translation) */
+.parallax-card {
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --translate-x: 0px;
+  --translate-y: 0px;
+  --translate-z: 0px;
+  transform: perspective(1000px) 
+            rotateX(var(--rotate-x)) 
+            rotateY(var(--rotate-y)) 
+            translateX(var(--translate-x)) 
+            translateY(var(--translate-y)) 
+            translateZ(var(--translate-z));
+  transition: transform 0.1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Trackpad Press Effect - Interactive Cards (Projects/Certificates) */
+.project-card:hover,
+.certificate-card:hover {
+  transform: translateY(4px) scale(0.98) translateZ(-10px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 
+              inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-color: #EFBF04 !important;
+  border-width: 2px !important;
+}
+
+/* Education Card Styling */
+.education-card {
+  background: var(--box-color) !important;
+  border: 1px solid rgba(239, 191, 4, 0.2) !important;
+}
+
+/* Certificate Gold Glow Reveal */
+.certificate-card {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid rgba(239, 191, 4, 0.2);
+}
+
+/* Certificate Shimmer Effect */
+@keyframes certificateShimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.certificate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.certificate-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(239, 191, 4, 0.3),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.certificate-shimmer.revealed::before {
+  animation: certificateShimmer 2s ease-in-out;
+}
+
+/* Social Buttons - Gold Border and Trackpad Press */
+.social-button,
+.interactive-button {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  border: 1px solid var(--skin-color) !important;
+}
+
+.social-button:hover,
+.interactive-button:hover {
+  transform: translateY(4px) scale(0.98) translateZ(-10px) !important;
+  box-shadow: 0 0 20px rgba(239, 191, 4, 0.4), 
+              0 0 40px rgba(239, 191, 4, 0.2),
+              inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-color: var(--skin-color) !important;
+}
+
+/* Magnetic Button Effect */
+.magnetic-button {
+  --magnetic-x: 0px;
+  --magnetic-y: 0px;
+  transform: translate(var(--magnetic-x), var(--magnetic-y));
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.magnetic-button:hover {
+  transform: translate(var(--magnetic-x), var(--magnetic-y)) translateY(4px) scale(0.98) translateZ(-10px) !important;
+}
+
+
+/* Staggered Reveal Animations */
+.stagger-reveal-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-reveal-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-reveal-3 {
+  animation-delay: 0.3s;
 }

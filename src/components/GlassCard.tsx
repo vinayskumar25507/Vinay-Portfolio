@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import { ReactNode } from "react";
+import { ReactNode, useRef, useState, useEffect } from "react";
 
 interface GlassCardProps {
   children: ReactNode;
@@ -11,6 +11,8 @@ interface GlassCardProps {
   image?: string;
   link?: string;
   techTags?: string[];
+  isProject?: boolean;
+  isCertificate?: boolean;
 }
 
 export default function GlassCard({
@@ -20,11 +22,91 @@ export default function GlassCard({
   image,
   link,
   techTags,
+  isProject = false,
+  isCertificate = false,
 }: GlassCardProps) {
   const hasLink = Boolean(link);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const mousePX = (x - centerX) / centerX;
+      const mousePY = (y - centerY) / centerY;
+      
+      // Low-intensity parallax: max 10deg rotation, 15px translation
+      const rX = Math.max(-10, Math.min(10, mousePY * 10));
+      const rY = Math.max(-10, Math.min(10, mousePX * -10));
+      const tX = Math.max(-15, Math.min(15, mousePX * -15));
+      const tY = Math.max(-15, Math.min(15, mousePY * -15));
+      
+      setMousePosition({ x: mousePX, y: mousePY });
+      
+      card.style.setProperty("--rotate-x", `${rX}deg`);
+      card.style.setProperty("--rotate-y", `${rY}deg`);
+      card.style.setProperty("--translate-x", `${tX}px`);
+      card.style.setProperty("--translate-y", `${tY}px`);
+      
+      if (isHovering) {
+        card.style.setProperty("--translate-z", "-10px");
+      } else {
+        card.style.setProperty("--translate-z", "0px");
+      }
+    };
+
+    const handleMouseEnter = () => {
+      setIsHovering(true);
+      card.style.setProperty("--translate-z", "-10px");
+    };
+
+    const handleMouseLeave = () => {
+      setIsHovering(false);
+      setMousePosition({ x: 0, y: 0 });
+      card.style.setProperty("--rotate-x", "0deg");
+      card.style.setProperty("--rotate-y", "0deg");
+      card.style.setProperty("--translate-x", "0px");
+      card.style.setProperty("--translate-y", "0px");
+      card.style.setProperty("--translate-z", "0px");
+    };
+
+    card.addEventListener("mousemove", handleMouseMove);
+    card.addEventListener("mouseenter", handleMouseEnter);
+    card.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      card.removeEventListener("mousemove", handleMouseMove);
+      card.removeEventListener("mouseenter", handleMouseEnter);
+      card.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [isHovering]);
+
+  const cardClasses = [
+    "relative",
+    "work-card",
+    "services-content",
+    "about-box",
+    "parallax-card",
+    hasLink ? "group cursor-pointer" : "cursor-default",
+    isProject ? "project-card" : "",
+    isCertificate ? "certificate-card certificate-shimmer" : "",
+    "flex flex-col backdrop-blur-xl rounded-2xl p-6 shadow-lg",
+    className,
+  ].filter(Boolean).join(" ");
 
   const card = (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -32,11 +114,7 @@ export default function GlassCard({
         delay,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`relative ${
-        hasLink
-          ? "group hover:shadow-2xl hover:border-white/40 cursor-pointer"
-          : "cursor-default"
-      } flex flex-col backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 shadow-lg transition-all duration-300 ${className}`}
+      className={cardClasses}
     >
       {hasLink ? (
         <div
@@ -44,7 +122,8 @@ export default function GlassCard({
           aria-label="View Project"
         >
           <ExternalLink
-            className="h-4 w-4 text-slate-900 transition-colors duration-300 group-hover:text-indigo-700"
+            className="h-4 w-4 transition-colors duration-300"
+            style={{ color: "var(--skin-color)" }}
             aria-hidden
           />
         </div>
@@ -86,7 +165,8 @@ export default function GlassCard({
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-2xl"
+        className="block focus:outline-none focus-visible:ring-2 rounded-2xl"
+        style={{ "--tw-ring-color": "var(--skin-color)" } as React.CSSProperties}
       >
         {card}
       </a>

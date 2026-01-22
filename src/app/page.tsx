@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CONFIG } from "@/content";
 import GlassCard from "@/components/GlassCard";
 import { motion } from "framer-motion";
@@ -14,6 +14,7 @@ export default function Home() {
     bio,
     socialLinks,
     skills,
+    education,
     projects,
     experiences,
     certificates,
@@ -36,30 +37,165 @@ export default function Home() {
     }
   };
 
-  return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-      {/* Animated mesh gradient blobs */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-400/30 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute top-1/2 -left-40 w-96 h-96 bg-purple-400/30 rounded-full blur-3xl animate-float" style={{ animationDelay: "6s" }}></div>
-        <div className="absolute -bottom-40 right-1/3 w-96 h-96 bg-pink-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "12s" }}></div>
-      </div>
+  // Scroll reveal for sections with staggered animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            // Add staggered delays to children
+            const headings = entry.target.querySelectorAll("h2, h3");
+            const cards = entry.target.querySelectorAll(".work-card, .services-content, .about-box");
+            const texts = entry.target.querySelectorAll("p, span:not(.name-shimmer)");
+            
+            headings.forEach((el, i) => {
+              setTimeout(() => {
+                el.classList.add("stagger-reveal-1");
+              }, i * 50);
+            });
+            
+            cards.forEach((el, i) => {
+              setTimeout(() => {
+                el.classList.add("stagger-reveal-2");
+                // Trigger certificate shimmer when revealed
+                if (el.classList.contains("certificate-shimmer")) {
+                  el.classList.add("revealed");
+                }
+              }, i * 100);
+            });
+            
+            // Include education cards in reveal
+            const educationCards = entry.target.querySelectorAll(".education-card");
+            educationCards.forEach((el, i) => {
+              setTimeout(() => {
+                el.classList.add("stagger-reveal-2");
+              }, i * 100);
+            });
+            
+            texts.forEach((el, i) => {
+              setTimeout(() => {
+                el.classList.add("stagger-reveal-3");
+              }, i * 50);
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
 
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      section.classList.add("scroll-reveal");
+      section.classList.add("section-dimmed"); // Initialize all sections as dimmed
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
+    };
+  }, []);
+
+  // Dynamic Viewport Focus - The Gaze
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const section = entry.target as HTMLElement;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            // Remove dimmed class and add focused class
+            section.classList.remove("section-dimmed");
+            section.classList.add("section-focused");
+          } else {
+            // Remove focused class and add dimmed class
+            section.classList.remove("section-focused");
+            section.classList.add("section-dimmed");
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+        rootMargin: "-20% 0px -20% 0px",
+      }
+    );
+
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      // Initialize all sections as dimmed
+      if (!section.classList.contains("section-focused")) {
+        section.classList.add("section-dimmed");
+      }
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
+    };
+  }, []);
+
+  // Magnetic Button Effect
+  useEffect(() => {
+    const buttons = document.querySelectorAll(".magnetic-button");
+    
+    const cleanupFunctions: (() => void)[] = [];
+    
+    buttons.forEach((button) => {
+      const handleMouseMove = (e: MouseEvent) => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        const moveX = x * 0.15;
+        const moveY = y * 0.15;
+        
+        (button as HTMLElement).style.setProperty("--magnetic-x", `${moveX}px`);
+        (button as HTMLElement).style.setProperty("--magnetic-y", `${moveY}px`);
+      };
+      
+      const handleMouseLeave = () => {
+        (button as HTMLElement).style.setProperty("--magnetic-x", "0px");
+        (button as HTMLElement).style.setProperty("--magnetic-y", "0px");
+      };
+      
+      button.addEventListener("mousemove", handleMouseMove);
+      button.addEventListener("mouseleave", handleMouseLeave);
+      
+      cleanupFunctions.push(() => {
+        button.removeEventListener("mousemove", handleMouseMove);
+        button.removeEventListener("mouseleave", handleMouseLeave);
+      });
+    });
+    
+    return () => {
+      cleanupFunctions.forEach((cleanup) => cleanup());
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen relative overflow-hidden" style={{ background: "var(--body-color)" }}>
       {/* Main content */}
-      <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+      <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24" style={{ position: "relative", zIndex: 10 }}>
         {/* --- HERO --- */}
         <section className="mb-16 sm:mb-20 lg:mb-24">
           <GlassCard delay={0.1}>
             <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6 md:gap-8 text-center md:text-left">
               <div className="md:max-w-2xl order-2 md:order-1">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6" style={{ color: "var(--title-color)" }}>
                   Hi, I&apos;m{" "}
-                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <span className="name-shimmer">
                     {name}
                   </span>
                 </h1>
                 <p
-                  className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-2xl"
+                  className="text-lg sm:text-xl leading-relaxed max-w-2xl"
+                  style={{ color: "var(--text-color)" }}
                   dangerouslySetInnerHTML={{ __html: bio }}
                 />
               </div>
@@ -70,7 +206,7 @@ export default function Home() {
                 transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                 className="shrink-0 order-1 md:order-2 md:ml-auto mx-auto md:mx-0"
               >
-                <div className="relative rounded-full p-[2px] bg-white/10 border border-white/20 backdrop-blur-xl shadow-lg">
+                <div className="relative rounded-full p-[4px] bg-white/10 backdrop-blur-xl shadow-lg solar-profile">
                   <Image
                     src={profileImage}
                     alt={`${name} profile photo`}
@@ -94,9 +230,10 @@ export default function Home() {
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 border border-white/20 hover:bg-white/60 hover:scale-105 transition-all duration-300 text-slate-700"
+                  className="social-button magnetic-button flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 hover:bg-white/60"
+                  style={{ color: "var(--text-color)" }}
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-5 h-5" style={{ color: "var(--skin-color)" }} />
                   <span className="text-sm sm:text-base">GitHub</span>
                 </a>
               )}
@@ -105,9 +242,10 @@ export default function Home() {
                   href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 border border-white/20 hover:bg-white/60 hover:scale-105 transition-all duration-300 text-slate-700"
+                  className="social-button magnetic-button flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 hover:bg-white/60"
+                  style={{ color: "var(--text-color)" }}
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="w-5 h-5" style={{ color: "var(--skin-color)" }} />
                   <span className="text-sm sm:text-base">LinkedIn</span>
                 </a>
               )}
@@ -116,34 +254,74 @@ export default function Home() {
                   href={socialLinks.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 border border-white/20 hover:bg-white/60 hover:scale-105 transition-all duration-300 text-slate-700"
+                  className="social-button magnetic-button flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 hover:bg-white/60"
+                  style={{ color: "var(--text-color)" }}
                 >
-                  <Twitter className="w-5 h-5" />
+                  <Twitter className="w-5 h-5" style={{ color: "var(--skin-color)" }} />
                   <span className="text-sm sm:text-base">Twitter</span>
                 </a>
               )}
               <a
                 href={CONFIG.socialLinks.email}
                 onClick={handleEmailClick}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 border border-white/20 hover:bg-white/60 hover:scale-105 transition-all duration-300 text-slate-700"
+                className="social-button magnetic-button flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 hover:bg-white/60"
+                style={{ color: "var(--text-color)" }}
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-5 h-5" style={{ color: "var(--skin-color)" }} />
                 <span className="text-sm sm:text-base">Email</span>
               </a>
             </div>
             {emailCopied && (
-              <div className="mt-3 text-xs sm:text-sm text-emerald-700 font-medium text-center sm:text-left">
+              <div className="mt-3 text-xs sm:text-sm font-medium text-center sm:text-left" style={{ color: "var(--skin-color)" }}>
                 Copied email to clipboard
               </div>
             )}
           </GlassCard>
         </section>
 
+        {/* --- EDUCATION --- */}
+        <section className="mb-16 sm:mb-20 lg:mb-24">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
+            Education
+          </h2>
+
+          <div className="flex flex-col gap-6 sm:gap-8">
+            {education.map((edu, index) => (
+              <GlassCard
+                key={`${edu.institution}-${edu.degree}-${edu.duration}`}
+                delay={0.25 + index * 0.1}
+                className="education-card"
+              >
+                <div className="flex flex-col gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-semibold mb-1" style={{ color: "var(--title-color)" }}>
+                        {edu.degree}
+                      </h3>
+                      <p className="text-base font-medium" style={{ color: "var(--text-color)" }}>
+                        {edu.institution}
+                      </p>
+                    </div>
+                    <div className="flex flex-col items-start sm:items-end gap-1">
+                      <div className="text-sm font-medium" style={{ color: "var(--skin-color)" }}>
+                        {edu.duration}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm leading-relaxed mt-2" style={{ color: "var(--text-color)" }}>
+                    {edu.details}
+                  </p>
+                </div>
+              </GlassCard>
+            ))}
+          </div>
+        </section>
+
         {/* --- SKILLS --- */}
         <section className="mb-16 sm:mb-20 lg:mb-24">
-          <GlassCard delay={0.25}>
+          <GlassCard delay={0.25} className="skills-card">
             <div className="flex flex-col gap-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center sm:text-left">
+              <h2 className="text-2xl sm:text-3xl font-bold text-center sm:text-left" style={{ color: "var(--title-color)" }}>
                 Skills
               </h2>
 
@@ -170,7 +348,7 @@ export default function Home() {
 
         {/* --- PROJECTS --- */}
         <section>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center sm:text-left">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
             Featured Projects
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -181,12 +359,13 @@ export default function Home() {
                 image={project.image}
                 link={project.link}
                 techTags={project.techTags}
+                isProject={true}
               >
                 <div className="h-full flex flex-col">
-                  <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4" style={{ color: "var(--title-color)" }}>
                     {project.title}
                   </h3>
-                  <p className="text-gray-700 mb-4 sm:mb-6 flex-grow leading-relaxed">
+                  <p className="mb-4 sm:mb-6 flex-grow leading-relaxed" style={{ color: "var(--text-color)" }}>
                     {project.description}
                   </p>
                 </div>
@@ -197,7 +376,7 @@ export default function Home() {
 
         {/* --- EXPERIENCES --- */}
         <section className="mt-16 sm:mt-20 lg:mt-24">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center sm:text-left">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
             Experiences
           </h2>
 
@@ -210,20 +389,21 @@ export default function Home() {
                 <div key={`${exp.company}-${exp.role}-${exp.duration}`} className="relative pl-10">
                   {/* timeline dot */}
                   <div
-                    className="absolute left-3 top-8 -translate-x-1/2 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 shadow-sm"
+                    className="absolute left-3 top-8 -translate-x-1/2 w-3 h-3 rounded-full shadow-sm"
+                    style={{ background: `var(--skin-color)` }}
                     aria-hidden="true"
                   />
 
-                  <GlassCard delay={0.35 + index * 0.1}>
+                  <GlassCard delay={0.35 + index * 0.1} className="experience-card">
                     <div className="flex flex-col gap-2">
                       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                        <div className="text-lg sm:text-xl font-semibold text-gray-900">
+                        <div className="text-lg sm:text-xl font-semibold" style={{ color: "var(--title-color)" }}>
                           {exp.role}{" "}
-                          <span className="text-gray-600 font-medium">· {exp.company}</span>
+                          <span className="font-medium" style={{ color: "var(--text-color)" }}>· {exp.company}</span>
                         </div>
-                        <div className="text-sm text-gray-600">{exp.duration}</div>
+                        <div className="text-sm" style={{ color: "var(--text-color)" }}>{exp.duration}</div>
                       </div>
-                      <p className="text-gray-700 leading-relaxed">{exp.description}</p>
+                      <p className="leading-relaxed" style={{ color: "var(--text-color)" }}>{exp.description}</p>
                     </div>
                   </GlassCard>
                 </div>
@@ -234,7 +414,7 @@ export default function Home() {
 
         {/* --- CERTIFICATES & LICENSES --- */}
         <section className="mt-16 sm:mt-20 lg:mt-24">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center sm:text-left">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
             Certificates &amp; Licenses
           </h2>
 
@@ -245,14 +425,15 @@ export default function Home() {
                 <GlassCard
                   delay={0.35 + index * 0.08}
                   className={href ? "hover:bg-white/15 transition-colors" : ""}
+                  isCertificate={true}
                 >
                   <div className="flex flex-col gap-2">
-                    <div className="text-lg font-semibold text-gray-900">{cert.name}</div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-lg font-semibold" style={{ color: "var(--title-color)" }}>{cert.name}</div>
+                    <div className="text-sm" style={{ color: "var(--text-color)" }}>
                       {cert.issuer} · {cert.date}
                     </div>
                     {href ? (
-                      <div className="text-sm text-blue-700/80 font-medium">
+                      <div className="text-sm font-medium" style={{ color: "var(--skin-color)" }}>
                         View credential →
                       </div>
                     ) : null}
