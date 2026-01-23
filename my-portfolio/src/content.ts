@@ -70,7 +70,7 @@ export const CONFIG: Config = {
       degree: "Pre-University",
       institution: "Jnanodaya PU College",
       duration: "2023 - 2024",
-      details: "Karnataka State Board (PUC - Pre-University Course)\nPCMC Stream\nSpecializing in Physics, Chemistry, Mathematics, and Computer Science",
+      details: "Karnataka State Board (PUC - Pre-University Course)\nPCMC Stream\nSpecialized in Physics, Chemistry, Mathematics, and Computer Science",
       percentage: "92.3%",
     },
     {
