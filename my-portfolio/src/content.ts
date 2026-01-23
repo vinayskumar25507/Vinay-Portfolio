@@ -25,6 +25,7 @@ export interface Education {
   institution: string;
   duration: string;
   details: string;
+  percentage?: string;
 }
 
 export interface SocialLinks {
@@ -60,9 +61,24 @@ export const CONFIG: Config = {
   education: [
     {
       degree: "B.Tech in Computer Science & Engineering",
-      institution: "[Insert Your University Name]",
-      duration: "2022 - 2026",
-      details: "Specializing in Generative AI, Robotics, and Technical Market Analysis. Actively conducting meta-analysis on Autonomous AI Agents.",
+      institution: "SVyasa Deemed to be University X Nxtwave of Innovation in Advanced Technologies",
+      duration: "2025 - 2029",
+      details: "Specializing in Generative AI, Robotics, Full Stack Development, and Technical Market Analysis. Actively conducting meta-analysis on Autonomous AI Agents.",
+      percentage: "--%",
+    },
+    {
+      degree: "Pre-University",
+      institution: "Jnanodaya PU College",
+      duration: "2023 - 2024",
+      details: "Karnataka State Board (PUC - Pre-University Course)\nPCMC Stream\nSpecializing in Physics, Chemistry, Mathematics, and Computer Science",
+      percentage: "92.3%",
+    },
+    {
+      degree: "10th Standard",
+      institution: "St.Rossello's Central School",
+      duration: "2022",
+      details: "Central Board of Secondary Education",
+      percentage: "93.2%",
     },
   ],
   projects: [

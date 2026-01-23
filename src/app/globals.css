@@ -193,6 +193,32 @@ a {
   border: 1px solid rgba(239, 191, 4, 0.2) !important;
 }
 
+/* Education Percentage Badge */
+.education-percentage-badge {
+  display: inline-block;
+  color: #EFBF04;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.375rem 0.75rem;
+  border: 1.5px solid #BDDDE4;
+  background: rgba(239, 191, 4, 0.08);
+  border-radius: 0.5rem;
+  text-shadow: 0 0 8px rgba(239, 191, 4, 0.4);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced percentage badge when education card is in focus */
+.section-focused .education-card .education-percentage-badge {
+  color: #EFBF04;
+  background: rgba(239, 191, 4, 0.12);
+  border-color: #BDDDE4;
+  text-shadow: 0 0 12px rgba(239, 191, 4, 0.6);
+  box-shadow: 0 0 16px rgba(239, 191, 4, 0.3);
+}
+
 /* Certificate Gold Glow Reveal */
 .certificate-card {
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -204,7 +230,10 @@ a {
   0% {
     left: -100%;
   }
-  100% {
+  50% {
+    left: 100%;
+  }
+  50.01%, 100% {
     left: 100%;
   }
 }
@@ -229,10 +258,7 @@ a {
   );
   pointer-events: none;
   z-index: 1;
-}
-
-.certificate-shimmer.revealed::before {
-  animation: certificateShimmer 2s ease-in-out;
+  animation: certificateShimmer 3s ease-in-out infinite;
 }
 
 /* Social Buttons - Gold Border and Trackpad Press */

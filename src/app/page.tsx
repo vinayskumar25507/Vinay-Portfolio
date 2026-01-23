@@ -147,7 +147,7 @@ export default function Home() {
     const cleanupFunctions: (() => void)[] = [];
     
     buttons.forEach((button) => {
-      const handleMouseMove = (e: MouseEvent) => {
+      const handleMouseMove = (e: any) => {
         const rect = button.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
@@ -164,8 +164,8 @@ export default function Home() {
         (button as HTMLElement).style.setProperty("--magnetic-y", "0px");
       };
       
-      button.addEventListener("mousemove", handleMouseMove);
-      button.addEventListener("mouseleave", handleMouseLeave);
+      button.addEventListener("mousemove", handleMouseMove as unknown as EventListener);
+      button.addEventListener("mouseleave", handleMouseLeave as unknown as EventListener);
       
       cleanupFunctions.push(() => {
         button.removeEventListener("mousemove", handleMouseMove);
@@ -294,13 +294,18 @@ export default function Home() {
               >
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-lg sm:text-xl font-semibold mb-1" style={{ color: "var(--title-color)" }}>
                         {edu.degree}
                       </h3>
                       <p className="text-base font-medium" style={{ color: "var(--text-color)" }}>
                         {edu.institution}
                       </p>
+                      {edu.percentage && (
+                        <div className="education-percentage-badge mt-2">
+                          {edu.percentage}
+                        </div>
+                      )}
                     </div>
                     <div className="flex flex-col items-start sm:items-end gap-1">
                       <div className="text-sm font-medium" style={{ color: "var(--skin-color)" }}>
@@ -308,7 +313,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-sm leading-relaxed mt-2" style={{ color: "var(--text-color)" }}>
+                  <p className="text-sm leading-relaxed mt-2 whitespace-pre-line" style={{ color: "var(--text-color)" }}>
                     {edu.details}
                   </p>
                 </div>
