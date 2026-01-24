@@ -17,6 +17,7 @@ export interface Certificate {
   name: string;
   issuer: string;
   date: string;
+  image: string;
   linkToFile?: string;
 }
 
@@ -171,6 +172,7 @@ export const CONFIG: Config = {
       name: "BASE44 Workshop Certificate",
       issuer: "Nxtwave of Innovation in Advanced Technologies (NIAT)",
       date: "0November 2025",
+      image: "/Project Photos/Base44.png",
       // Put your file under /public and reference like: \"/certificates/aws-ccp.pdf\"
       linkToFile: "/Certificates/BASE44.png",
     },
@@ -178,12 +180,14 @@ export const CONFIG: Config = {
       name: "Web Development Course Completion Certificate",
       issuer: "Launched Global and E-Cell IIT Khargpur",
       date: "December 2025",
+      image: "/Project Photos/Course Completion - LG.png",
       linkToFile: "/Certificates/Certificate of Course Completion - Launched Global.pdf",
     },
     {
       name: "Web Development Internship Completion Certificate",
       issuer: "Launched Global",
       date: "December 2025",
+      image: "/Project Photos/Internship Completion - LG.png",
       linkToFile: "/Certificates/Certificate Of Internship Completion - Launched Global.pdf",
     },
   ],
