@@ -38,26 +38,26 @@ export default function GlassCard({
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      
+
       const mousePX = (x - centerX) / centerX;
       const mousePY = (y - centerY) / centerY;
-      
+
       // Low-intensity parallax: max 10deg rotation, 15px translation
       const rX = Math.max(-10, Math.min(10, mousePY * 10));
       const rY = Math.max(-10, Math.min(10, mousePX * -10));
       const tX = Math.max(-15, Math.min(15, mousePX * -15));
       const tY = Math.max(-15, Math.min(15, mousePY * -15));
-      
+
       setMousePosition({ x: mousePX, y: mousePY });
-      
+
       card.style.setProperty("--rotate-x", `${rX}deg`);
       card.style.setProperty("--rotate-y", `${rY}deg`);
       card.style.setProperty("--translate-x", `${tX}px`);
       card.style.setProperty("--translate-y", `${tY}px`);
-      
+
       if (isHovering) {
         card.style.setProperty("--translate-z", "-10px");
       } else {
@@ -134,9 +134,8 @@ export default function GlassCard({
           <img
             src={image}
             alt=""
-            className={`w-full h-full object-cover ${
-              hasLink ? "transition-transform duration-500 ease-out group-hover:scale-105" : ""
-            }`}
+            className={`w-full h-full object-cover ${hasLink ? "transition-transform duration-500 ease-out group-hover:scale-105" : ""
+              }`}
           />
         </div>
       ) : null}

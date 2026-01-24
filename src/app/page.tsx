@@ -431,7 +431,6 @@ export default function Home() {
                   delay={0.35 + index * 0.08}
                   className={href ? "hover:bg-white/15 transition-colors" : ""}
                   isCertificate={true}
-                  image={cert.image} // Passed image prop here
                 >
                   <div className="flex flex-col gap-2">
                     <div className="text-lg font-semibold" style={{ color: "var(--title-color)" }}>{cert.name}</div>
