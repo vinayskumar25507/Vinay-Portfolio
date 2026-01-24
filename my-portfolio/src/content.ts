@@ -35,6 +35,15 @@ export interface SocialLinks {
   email?: string;
 }
 
+export interface SocialService {
+  organization: string;
+  role: string;
+  duration: string;
+  description: string;
+  image: string;
+  linkToFile: string;
+}
+
 export interface Config {
   name: string;
   profileImage: string;
@@ -45,6 +54,7 @@ export interface Config {
   projects: Project[];
   experiences: Experience[];
   certificates: Certificate[];
+  socialService: SocialService[];
 }
 
 export const CONFIG: Config = {
@@ -62,19 +72,19 @@ export const CONFIG: Config = {
     {
       degree: "B.Tech in Computer Science & Engineering",
       institution: "SVyasa Deemed to be University X Nxtwave of Innovation in Advanced Technologies",
-      duration: "2025 - 2029",
+      duration: "2025 - 2028",
       details: "Specializing in Generative AI, Robotics, Full Stack Development, and Technical Market Analysis. Actively conducting meta-analysis on Autonomous AI Agents.",
       percentage: "--%",
     },
     {
-      degree: "Pre-University",
+      degree: "12th Grade",
       institution: "Jnanodaya PU College",
-      duration: "2023 - 2024",
+      duration: "2024",
       details: "Karnataka State Board (PUC - Pre-University Course)\nPCMC Stream\nSpecialized in Physics, Chemistry, Mathematics, and Computer Science",
       percentage: "92.3%",
     },
     {
-      degree: "10th Standard",
+      degree: "10th Grade",
       institution: "St.Rossello's Central School",
       duration: "2022",
       details: "Central Board of Secondary Education",
@@ -175,6 +185,16 @@ export const CONFIG: Config = {
       issuer: "Launched Global",
       date: "December 2025",
       linkToFile: "/Certificates/Certificate Of Internship Completion - Launched Global.pdf",
+    },
+  ],
+  socialService: [
+    {
+      organization: "Narayana Hrudayalaya Blood Centre",
+      role: "Voluntary Blood Donor",
+      duration: "December 19, 2025",
+      description: "Contributed to a life-saving cause through voluntary blood donation at Narayana Health, demonstrating social responsibility and community support.",
+      image: "/Project Photos/Blood Donation - 1.jpg",
+      linkToFile: "/Certificates/Blood Donation - 1.pdf",
     },
   ],
 };

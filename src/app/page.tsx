@@ -48,13 +48,13 @@ export default function Home() {
             const headings = entry.target.querySelectorAll("h2, h3");
             const cards = entry.target.querySelectorAll(".work-card, .services-content, .about-box");
             const texts = entry.target.querySelectorAll("p, span:not(.name-shimmer)");
-            
+
             headings.forEach((el, i) => {
               setTimeout(() => {
                 el.classList.add("stagger-reveal-1");
               }, i * 50);
             });
-            
+
             cards.forEach((el, i) => {
               setTimeout(() => {
                 el.classList.add("stagger-reveal-2");
@@ -64,7 +64,7 @@ export default function Home() {
                 }
               }, i * 100);
             });
-            
+
             // Include education cards in reveal
             const educationCards = entry.target.querySelectorAll(".education-card");
             educationCards.forEach((el, i) => {
@@ -72,7 +72,7 @@ export default function Home() {
                 el.classList.add("stagger-reveal-2");
               }, i * 100);
             });
-            
+
             texts.forEach((el, i) => {
               setTimeout(() => {
                 el.classList.add("stagger-reveal-3");
@@ -143,36 +143,36 @@ export default function Home() {
   // Magnetic Button Effect
   useEffect(() => {
     const buttons = document.querySelectorAll(".magnetic-button");
-    
+
     const cleanupFunctions: (() => void)[] = [];
-    
+
     buttons.forEach((button) => {
       const handleMouseMove = (e: any) => {
         const rect = button.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        
+
         const moveX = x * 0.15;
         const moveY = y * 0.15;
-        
+
         (button as HTMLElement).style.setProperty("--magnetic-x", `${moveX}px`);
         (button as HTMLElement).style.setProperty("--magnetic-y", `${moveY}px`);
       };
-      
+
       const handleMouseLeave = () => {
         (button as HTMLElement).style.setProperty("--magnetic-x", "0px");
         (button as HTMLElement).style.setProperty("--magnetic-y", "0px");
       };
-      
+
       button.addEventListener("mousemove", handleMouseMove as unknown as EventListener);
       button.addEventListener("mouseleave", handleMouseLeave as unknown as EventListener);
-      
+
       cleanupFunctions.push(() => {
         button.removeEventListener("mousemove", handleMouseMove);
         button.removeEventListener("mouseleave", handleMouseLeave);
       });
     });
-    
+
     return () => {
       cleanupFunctions.forEach((cleanup) => cleanup());
     };
@@ -464,6 +464,81 @@ export default function Home() {
             })}
           </div>
         </section>
+
+        {/* --- SOCIAL SERVICE SECTION --- */}
+        <section className="mt-16 sm:mt-20 lg:mb-24">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
+            Social Service
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {CONFIG.socialService.map((service, index) => (
+              <a
+                key={index}
+                href={service.linkToFile}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group focus:outline-none"
+              >
+                <GlassCard
+                  delay={0.3 + index * 0.1}
+                  isCertificate={true} // Triggers the shimmer logic in GlassCard
+                  className="work-card certificate-shimmer overflow-hidden h-full flex flex-col p-0"
+                >
+                  {/* Image Section */}
+                  <div className="relative aspect-video w-full overflow-hidden bg-white/5">
+                    <Image
+                      src={service.image}
+                      alt={service.organization}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-6 flex flex-col gap-2">
+                    <h3 className="text-xl font-bold" style={{ color: "var(--title-color)" }}>
+                      {service.role}
+                    </h3>
+                    <p className="font-semibold" style={{ color: "var(--skin-color)" }}>
+                      {service.organization}
+                    </p>
+                    <p className="text-sm opacity-80" style={{ color: "var(--text-color)" }}>
+                      {service.duration}
+                    </p>
+                    <p className="text-sm mt-2 whitespace-pre-line" style={{ color: "var(--text-color)" }}>
+                      {service.description}
+                    </p>
+
+                    {/* Link Indicator */}
+                    <div className="mt-4 text-sm font-bold flex items-center gap-1" style={{ color: "var(--skin-color)" }}>
+                      View Documentation
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </div>
+                  </div>
+                </GlassCard>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* --- TRUTH & KNOWLEDGE DISCLAIMER --- */}
+        <footer className="mt-24 pb-12 border-t border-gray-900/10 text-center">
+          <div className="max-w-3xl mx-auto px-4">
+            <p className="text-xs sm:text-sm leading-relaxed opacity-70" style={{ color: "var(--text-color)" }}>
+              © 2026 {name}. All Rights Reserved.
+            </p>
+            <p className="mt-4 text-[10px] sm:text-xs italic leading-relaxed" style={{ color: "var(--text-color)", opacity: 0.6 }}>
+              Declaration: All information, project data, and academic achievements presented in this portfolio
+              are true and accurate to the best of my knowledge.
+              As a B.Tech Computer Science & Engineering student, these works represent my active
+              learning journey in Generative AI, Robotics, and Full-Stack Development.
+            </p>
+
+            {/* Sublte Gold Glow Divider */}
+            <div className="mt-6 h-[1px] w-24 mx-auto bg-gradient-to-r from-transparent via-[#EFBF04] to-transparent shadow-[0_0_8px_#EFBF04]" />
+          </div>
+        </footer>
       </main>
     </div>
   );
