@@ -171,10 +171,17 @@ export const CONFIG: Config = {
     {
       name: "BASE44 Workshop Certificate",
       issuer: "Nxtwave of Innovation in Advanced Technologies (NIAT)",
-      date: "0November 2025",
+      date: "18 November 2025",
       image: "/Project Photos/Base44.png",
       // Put your file under /public and reference like: \"/certificates/aws-ccp.pdf\"
       linkToFile: "/Certificates/BASE44.png",
+    },
+    {
+      name: "Murf.AI - Hands-On App Building Workshop",
+      issuer: "NxtWave of Innovation in Advanced Technologies (NIAT)",
+      date: "23 January 2026",
+      image: "/Project Photos/MURFAI.png",
+      linkToFile: "/Certificates/MURFAI.png",
     },
     {
       name: "Web Development Course Completion Certificate",
