@@ -169,6 +169,13 @@ export const CONFIG: Config = {
   ],
   certificates: [
     {
+      name: "Hack the Human Signal - AI & Robotics Workshop",
+      issuer: "NxtWave of Innovation in Advanced Technologies (NIAT)",
+      date: "12 January 2026",
+      image: "/Project Photos/AI Robotics Workshop.png",
+      linkToFile: "/Certificates/AI Robotics Workshop.png",
+    },
+    {
       name: "Murf.AI - Hands-On App Building Workshop",
       issuer: "NxtWave of Innovation in Advanced Technologies (NIAT)",
       date: "23 January 2026",
