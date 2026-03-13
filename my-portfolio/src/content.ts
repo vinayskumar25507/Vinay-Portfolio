@@ -68,7 +68,7 @@ export const CONFIG: Config = {
     twitter: "https://x.com/VIN_2557",
     email: "mailto:vinayskumar2557@gmail.com",
   },
-  skills: ["C++", "Python", "n8n", "HTML", "CSS", "JavaScript", "MySQL"],
+  skills: ["C++", "Python", "n8n", "HTML", "CSS", "JavaScript", "SQL", "Gradio", "Flask", "Generative AI"],
   education: [
     {
       degree: "B.Tech in Computer Science & Engineering",
@@ -93,6 +93,13 @@ export const CONFIG: Config = {
     },
   ],
   projects: [
+    {
+      title: "Study Assistant: Dual-Persona AI Tutor",
+      description: "An interactive educational web application hosted on Hugging Face Spaces that utilizes the Gemini 2.5 Flash model to break down complex concepts. Built with Gradio, it allows users to toggle between 'Friendly' and 'Academic' AI personas to receive tailored, beginner-friendly explanations enriched with real-world analogies.",
+      image: "/Project Photos/Study Assistant - NIAT - Building LLM Application.png",
+      link: "https://huggingface.co/spaces/VinWin25/StudyAssistant",
+      techTags: ["Python", "Gradio", "Google GenAI", "Gemini 2.5 Flash", "Hugging Face Spaces"],
+    },
     {
       title: "Rio: AI Retail & Style Assistant",
       description: "A specialized assistant that processes voice and text to scrape Amazon India for products. Includes a custom Python-based audio converter to handle OGA to OGG format transitions for seamless transcription.",
