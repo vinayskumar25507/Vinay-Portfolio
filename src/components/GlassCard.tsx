@@ -100,7 +100,8 @@ export default function GlassCard({
     hasLink ? "group cursor-pointer" : "cursor-default",
     isProject ? "project-card" : "",
     isCertificate ? "certificate-card certificate-shimmer" : "",
-    "flex flex-col backdrop-blur-xl rounded-2xl p-6 shadow-lg",
+    "flex flex-col backdrop-blur-xl rounded-2xl shadow-lg", // Removed hardcoded p-6
+    className.includes("p-") ? "" : "p-6", // Dynamically adds padding unless overridden
     className,
   ].filter(Boolean).join(" ");
 
@@ -134,11 +135,13 @@ export default function GlassCard({
           <img
             src={image}
             alt=""
-            className={`w-full h-full object-cover ${hasLink ? "transition-transform duration-500 ease-out group-hover:scale-105" : ""
-              }`}
+            className={`w-full h-full object-cover ${
+              hasLink ? "transition-transform duration-500 ease-out group-hover:scale-105" : ""
+            }`}
           />
         </div>
       ) : null}
+      
       <div className="flex flex-col flex-1">
         <div className="flex-1">{children}</div>
 
