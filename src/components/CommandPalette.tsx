@@ -18,7 +18,7 @@ export default function CommandPalette({ isOpen, setIsOpen, handleEmailCopy }: a
   if (!isOpen) return null;
 
   const actions = [
-    { id: "resume", title: "View Resume", icon: <FileText size={18} />, action: () => window.open("/resume.pdf", "_blank") },
+    { id: "resume", title: "View Resume", icon: <FileText size={18} />, action: () => window.open("/Personal Information/Vinay S Kumar - Resume.pdf", "_blank") },
     { id: "projects", title: "Scroll to Projects", icon: <Code size={18} />, action: () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }) },
     { id: "experience", title: "Scroll to Experience", icon: <Briefcase size={18} />, action: () => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" }) },
     { id: "email", title: "Copy Email", icon: <Mail size={18} />, action: handleEmailCopy },

@@ -22,6 +22,7 @@ export interface Certificate {
   name: string;
   issuer: string;
   date: string;
+  description?: string;
   media?: MediaItem[];
   linkToFile?: string;
 }
@@ -39,6 +40,7 @@ export interface SocialLinks {
   linkedin?: string;
   twitter?: string;
   email?: string;
+  resume?: string;
 }
 
 export interface SocialService {
@@ -72,8 +74,20 @@ export const CONFIG: Config = {
     linkedin: "https://www.linkedin.com/in/vinay-s-kumar-3662b9375",
     twitter: "https://x.com/VIN_2557",
     email: "mailto:vinayskumar2557@gmail.com",
+    resume: "/Personal Information/Vinay S Kumar - Resume.pdf",
   },
-  skills: ["C++", "Python", "n8n", "HTML", "CSS", "JavaScript", "SQL", "Gradio", "Flask", "Generative AI"],
+  skills: [
+    "C++",
+    "Python",
+    "n8n",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "SQL",
+    "Gradio",
+    "Flask",
+    "Generative AI",
+  ],
   education: [
     {
       degree: "B.Tech in Computer Science & Engineering",
@@ -175,8 +189,7 @@ export const CONFIG: Config = {
       company: "Launched Global",
       role: "Web Developer Intern",
       duration: "November 2025 - December 2025",
-      description:
-        "Developed a responsive web application using JavaScript (ES6+) and the Jikan API to search and manage anime watchlists. Implemented automated progress tracking and LocalStorage persistence to manage user states like Watching and Completed.",
+      description: "Developed a responsive web application using JavaScript (ES6+) and the Jikan API to search and manage anime watchlists. Implemented automated progress tracking and LocalStorage persistence to manage user states like Watching and Completed.",
     },
   ],
   certificates: [
@@ -184,17 +197,20 @@ export const CONFIG: Config = {
       name: "Hack the Human Signal - AI & Robotics Workshop",
       issuer: "NxtWave of Innovation in Advanced Technologies (NIAT)",
       date: "12 January 2026",
-      media: [{ type: "video", url: "/Project Videos/AI Robotics Workshop Video.mp4" },
-              { type: "image", url: "/Project Photos/AI Robotics Workshop/AI Robotics Workshop Certificate.png" },
-              { type: "image", url: "/Project Photos/AI Robotics Workshop/AI Robotics Workshop - Practical.png" },
-              { type: "image", url: "/Project Photos/AI Robotics Workshop/Robot.jpg" },
-            ],
+      description: "Developed a real-time hand gesture recognition system using Python, OpenCV, and MediaPipe during an introductory robotics workshop to explore how machines visually perceive their environment. The project processes live webcam feeds to map hand landmarks and identify complex gestures, demonstrating foundational computer vision techniques used in human-robot interaction.",
+      media: [
+        { type: "video", url: "/Project Videos/AI Robotics Workshop Video.mp4" },
+        { type: "image", url: "/Project Photos/AI Robotics Workshop/AI Robotics Workshop Certificate.png" },
+        { type: "image", url: "/Project Photos/AI Robotics Workshop/AI Robotics Workshop - Practical.png" },
+        { type: "image", url: "/Project Photos/AI Robotics Workshop/Robot.jpg" },
+      ],
       linkToFile: "/Certificates/AI Robotics Workshop.png",
     },
     {
       name: "Murf.AI - Hands-On App Building Workshop",
       issuer: "NxtWave of Innovation in Advanced Technologies (NIAT)",
       date: "23 January 2026",
+      description: "Developed an AI-powered travel guide web application using Python, Flask, Gemini, and Murf AI during a college workshop. The platform dynamically generates localized tourist descriptions and converts them into natural-sounding, multilingual audio guides based on user preferences.",
       media: [{ type: "image", url: "/Project Photos/MURFAI.png" }],
       linkToFile: "/Certificates/MURFAI.png",
     },
@@ -202,6 +218,7 @@ export const CONFIG: Config = {
       name: "BASE44 Workshop Certificate",
       issuer: "Nxtwave of Innovation in Advanced Technologies (NIAT)",
       date: "18 November 2025",
+      description: "Explored rapid application development during a college workshop focused on Base44, an AI-powered no-code platform that translates natural language prompts into working applications. Gained hands-on experience with its core features—including auto-generated app structures, integrated database management, and built-in user authentication—to quickly design and deploy full-stack prototypes.",
       media: [{ type: "image", url: "/Project Photos/Base44.png" }],
       linkToFile: "/Certificates/BASE44.png",
     },
@@ -209,6 +226,7 @@ export const CONFIG: Config = {
       name: "Web Development Course Completion Certificate",
       issuer: "Launched Global and E-Cell IIT Khargpur",
       date: "December 2025",
+      description: "Successfully completed a comprehensive Web Development program with a core focus on front-end technologies, including HTML5, CSS3, and modern vanilla JavaScript. Mastered essential web development concepts such as semantic UI structuring, responsive design using CSS Grid and Flexbox, asynchronous event handling, dynamic DOM manipulation, and browser data persistence (LocalStorage).",
       media: [{ type: "image", url: "/Project Photos/Course Completion - LG.png" }],
       linkToFile: "/Certificates/Certificate of Course Completion - Launched Global.pdf",
     },
@@ -216,6 +234,7 @@ export const CONFIG: Config = {
       name: "Web Development Internship Completion Certificate",
       issuer: "Launched Global",
       date: "December 2025",
+      description: "Designed and developed the 'AniFocus Tracker,' a dynamic Single Page Application (SPA) built entirely with HTML, CSS, and vanilla JavaScript. Engineered core functionalities including full CRUD (Create, Read, Update, Delete) operations, dynamic content filtering, and real-time search logic. Implemented a persistent state management system utilizing the browser's LocalStorage API, and designed a highly responsive, modern dark-themed user interface to ensure a seamless user experience across devices.",
       media: [{ type: "image", url: "/Project Photos/Internship Completion - LG.png" }],
       linkToFile: "/Certificates/Certificate Of Internship Completion - Launched Global.pdf",
     },
@@ -226,7 +245,9 @@ export const CONFIG: Config = {
       role: "Voluntary Blood Donor",
       duration: "December 19, 2025",
       description: "Contributed to a life-saving cause through voluntary blood donation at Narayana Health, demonstrating social responsibility and community support.",
-      media: [{ type: "image", url: "/Project Photos/Blood Donation - 1.jpg" }],
+      media: [{ type: "image", url: "/Project Photos/Blood Donation - 1.jpg" },
+              { type: "image", url: "/Profile Picture/First Blood Donation - 19 Dec 2025.jpg" },
+            ],
       linkToFile: "/Certificates/Blood Donation - 1.pdf",
     },
   ],

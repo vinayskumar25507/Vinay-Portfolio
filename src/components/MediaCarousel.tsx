@@ -22,8 +22,6 @@ export default function MediaCarousel({ media }: { media: any[] }) {
 
   if (!media || media.length === 0) return null;
 
-  const currentMedia = media[currentIndex];
-
   const nextSlide = (e: any) => {
     e.preventDefault();
     setCurrentIndex((prev) => (prev === media.length - 1 ? 0 : prev + 1));
@@ -45,23 +43,33 @@ export default function MediaCarousel({ media }: { media: any[] }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {currentMedia.type === "image" ? (
-        <Image
-          src={currentMedia.url}
-          alt={`Slide ${currentIndex + 1}`}
-          fill
-          className="object-cover transition-transform duration-700 group-hover/carousel:scale-105"
-        />
-      ) : (
-        <video
-          src={currentMedia.url}
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-          className="w-full h-full object-cover transition-transform duration-700 group-hover/carousel:scale-105"
-        />
-      )}
+      {/* SMOOTH SLIDING TRACK */}
+      <div 
+        className="flex w-full h-full transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {media.map((item, idx) => (
+          <div key={idx} className="relative w-full h-full shrink-0 overflow-hidden">
+            {item.type === "image" ? (
+              <Image
+                src={item.url}
+                alt={`Slide ${idx + 1}`}
+                fill
+                className="object-cover transition-transform duration-700 group-hover/carousel:scale-105"
+              />
+            ) : (
+              <video
+                src={item.url}
+                autoPlay
+                loop
+                muted={isMuted}
+                playsInline
+                className="w-full h-full object-cover transition-transform duration-700 group-hover/carousel:scale-105"
+              />
+            )}
+          </div>
+        ))}
+      </div>
 
       {/* Navigation Arrows */}
       {media.length > 1 && (
@@ -94,7 +102,7 @@ export default function MediaCarousel({ media }: { media: any[] }) {
       )}
 
       {/* Mute Toggle for Video */}
-      {currentMedia.type === "video" && (
+      {media[currentIndex]?.type === "video" && (
         <button
           onClick={toggleMute}
           className="absolute top-3 right-3 p-2 rounded-full bg-black/60 text-white opacity-0 group-hover/carousel:opacity-100 transition-all hover:bg-[#EFBF04] hover:text-black z-20"

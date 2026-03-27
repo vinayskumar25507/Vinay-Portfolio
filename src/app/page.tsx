@@ -218,11 +218,12 @@ export default function Home() {
                 <span className="text-sm sm:text-base">Email</span>
               </a>
 
-              {/* MAGNETIC RESUME BUTTON */}
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="social-button magnetic-button flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 hover:bg-white/60" style={{ color: "var(--text-color)" }}>
-                <FileText className="w-5 h-5" style={{ color: "var(--skin-color)" }} />
-                <span className="text-sm sm:text-base">Resume</span>
-              </a>
+              {socialLinks.resume && (
+                <a href={socialLinks.resume} target="_blank" rel="noopener noreferrer" className="social-button magnetic-button flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 hover:bg-white/60" style={{ color: "var(--text-color)" }}>
+                  <FileText className="w-5 h-5" style={{ color: "var(--skin-color)" }} />
+                  <span className="text-sm sm:text-base">Resume</span>
+                </a>
+              )}
             </div>
             {emailCopied && <div className="mt-3 text-xs sm:text-sm font-medium text-center sm:text-left" style={{ color: "var(--skin-color)" }}>Copied email to clipboard</div>}
           </GlassCard>
@@ -239,7 +240,17 @@ export default function Home() {
                     <div className="flex-1">
                       <h3 className="text-lg sm:text-xl font-semibold mb-1" style={{ color: "var(--title-color)" }}>{edu.degree}</h3>
                       <p className="text-base font-medium" style={{ color: "var(--text-color)" }}>{edu.institution}</p>
+                      
+                      {edu.percentage && (
+                        <div 
+                          className="inline-block mt-3 mb-1 px-3 py-1.5 rounded-md border text-sm font-bold transition-colors duration-500 bg-[#FFFFFF] [.section-focused_&]:bg-[#EFBF04]"
+                          style={{ color: "#456882", borderColor: "#EFBF04" }}
+                        >
+                          Score: {edu.percentage}
+                        </div>
+                      )}
                     </div>
+                    
                     <div className="flex flex-col items-start sm:items-end gap-1">
                       <div className="text-sm font-medium" style={{ color: "var(--skin-color)" }}>{edu.duration}</div>
                     </div>
@@ -258,7 +269,14 @@ export default function Home() {
               <h2 className="text-2xl sm:text-3xl font-bold text-center sm:text-left" style={{ color: "var(--title-color)" }}>Skills</h2>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, index) => (
-                  <motion.span key={skill} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.3 + index * 0.04, ease: [0.22, 1, 0.36, 1] }} className="px-3 py-1 text-xs sm:text-sm bg-white/40 backdrop-blur-sm border border-white/30 rounded-full text-slate-800 font-medium whitespace-nowrap">
+                  <motion.span 
+                    key={skill} 
+                    initial={{ opacity: 0, y: 6 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ duration: 0.35, delay: 0.3 + index * 0.04, ease: [0.22, 1, 0.36, 1] }} 
+                    className="px-3 py-1 text-xs sm:text-sm font-bold rounded-full border transition-colors duration-500 bg-[#FFFFFF] [.section-focused_&]:bg-[#EFBF04] whitespace-nowrap"
+                    style={{ color: "#456882", borderColor: "#EFBF04" }}
+                  >
                     {skill}
                   </motion.span>
                 ))}
@@ -341,15 +359,22 @@ export default function Home() {
                   <div className="flex flex-col gap-2">
                     <div className="text-lg font-semibold" style={{ color: "var(--title-color)" }}>{cert.name}</div>
                     <div className="text-sm" style={{ color: "var(--text-color)" }}>{cert.issuer} · {cert.date}</div>
-                    {href ? <div className="text-sm font-medium" style={{ color: "var(--skin-color)" }}>View credential →</div> : null}
+
+                    {cert.description && (
+                      <p className="text-sm mt-1 mb-2 leading-relaxed" style={{ color: "var(--text-color)", opacity: 0.9 }}>
+                        {cert.description}
+                      </p>
+                    )}
+
+                    {href ? <div className="text-sm font-medium mt-auto" style={{ color: "var(--skin-color)" }}>View credential →</div> : null}
                   </div>
                 </GlassCard>
               );
               return href ? (
-                <a key={index} href={href} target="_blank" rel="noopener noreferrer" className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-2xl">
+                <a key={index} href={href} target="_blank" rel="noopener noreferrer" className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-2xl h-full">
                   {Card}
                 </a>
-              ) : <div key={index} className="block">{Card}</div>;
+              ) : <div key={index} className="block h-full">{Card}</div>;
             })}
           </div>
         </section>
