@@ -6,7 +6,7 @@ import GlassCard from "@/components/GlassCard";
 import MediaCarousel from "@/components/MediaCarousel"; 
 import CommandPalette from "@/components/CommandPalette"; 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, FileText, Search } from "lucide-react"; 
+import { Github, Linkedin, Twitter, Mail, FileText, Search, Play } from "lucide-react"; 
 import Image from "next/image";
 
 export default function Home() {
