@@ -86,7 +86,10 @@ export const CONFIG: Config = {
     "SQL",
     "Gradio",
     "Flask",
+    "FastAPI",
     "Generative AI",
+    "LangChain",
+    "Google ADK (Agent Development Kit)",
   ],
   education: [
     {
@@ -112,6 +115,16 @@ export const CONFIG: Config = {
     },
   ],
   projects: [
+    {
+      title: "DataScrape AI: CS & Tech Discovery Hub",
+      description: "A full-stack, real-time intelligence dashboard for the computer science ecosystem. Built with a React/Vite frontend, the platform automates data extraction using an n8n workflow powered by Google Gemini AI. It intelligently parses live event and course data from GeeksforGeeks and hackathon listings from Unstop, transforming unstructured web content into a structured, actionable student resource.",
+      media: [
+        {type: "image", url: "/Project Photos/DataScrape - AI - FE.png"},
+        {type: "image", url: "/Project Photos/DataScrape - AI - BE.png"},
+      ],
+      link: "https://data-scrape-ai.vercel.app",
+      techTags: ["React", "Vite", "n8n", "Google Gemini AI", "Vercel"],
+    },
     {
       title: "Study Assistant: Dual-Persona AI Tutor",
       description: "An interactive educational web application hosted on Hugging Face Spaces that utilizes the Gemini 2.5 Flash model to break down complex concepts. Built with Gradio, it allows users to toggle between 'Friendly' and 'Academic' AI personas to receive tailored, beginner-friendly explanations enriched with real-world analogies.",
