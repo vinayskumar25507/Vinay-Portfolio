@@ -51,42 +51,32 @@ export default function Home() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Scroll reveal
+  // Scroll reveal - For Individual Card Tracking
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
-            const headings = entry.target.querySelectorAll("h2, h3");
-            const cards = entry.target.querySelectorAll(".work-card, .services-content, .about-box");
-            const texts = entry.target.querySelectorAll("p, span:not(.name-shimmer)");
+  const itemObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // We only use one clean class now
+          entry.target.classList.add("item-visible");
+          itemObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+  );
 
-            headings.forEach((el, i) => setTimeout(() => el.classList.add("stagger-reveal-1"), i * 50));
-            cards.forEach((el, i) => {
-              setTimeout(() => {
-                el.classList.add("stagger-reveal-2");
-                if (el.classList.contains("certificate-shimmer")) el.classList.add("revealed");
-              }, i * 100);
-            });
-            const educationCards = entry.target.querySelectorAll(".education-card");
-            educationCards.forEach((el, i) => setTimeout(() => el.classList.add("stagger-reveal-2"), i * 100));
-            texts.forEach((el, i) => setTimeout(() => el.classList.add("stagger-reveal-3"), i * 50));
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
+  // Select headers and cards to be watched
+  const selectors = "h1, h2, h3, .education-card, .skills-card, .experience-card, .work-card, .certificate-shimmer, p, .social-button";
+  const items = document.querySelectorAll(selectors);
+  
+  items.forEach((item) => {
+    item.classList.add("scroll-reveal-item"); // Base state
+    itemObserver.observe(item);
+  });
 
-    const sections = document.querySelectorAll("section");
-    sections.forEach((section) => {
-      section.classList.add("scroll-reveal");
-      section.classList.add("section-dimmed");
-      observer.observe(section);
-    });
-
-    return () => sections.forEach((section) => observer.unobserve(section));
-  }, []);
+  return () => itemObserver.disconnect();
+}, []);
 
   // Dynamic Viewport Focus - The Gaze
   useEffect(() => {

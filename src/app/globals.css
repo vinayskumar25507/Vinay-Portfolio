@@ -35,42 +35,23 @@ a {
 }
 
 /* Spotlight Scroll Reveal Animation */
+/* Base state for everything that should slide up */
+.scroll-reveal-item {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}
+
+/* The actual animation trigger */
+.item-visible {
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+}
+
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.scroll-reveal.revealed {
-  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-.scroll-reveal.revealed h2,
-.scroll-reveal.revealed h3 {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.scroll-reveal.revealed .stagger-reveal-1 {
-  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-.scroll-reveal.revealed .stagger-reveal-2 {
-  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-.scroll-reveal.revealed .stagger-reveal-3 {
-  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 /* Name Shimmer Effect */
@@ -288,18 +269,4 @@ a {
 
 .magnetic-button:hover {
   transform: translate(var(--magnetic-x), var(--magnetic-y)) translateY(4px) scale(0.98) translateZ(-10px) !important;
-}
-
-
-/* Staggered Reveal Animations */
-.stagger-reveal-1 {
-  animation-delay: 0.1s;
-}
-
-.stagger-reveal-2 {
-  animation-delay: 0.2s;
-}
-
-.stagger-reveal-3 {
-  animation-delay: 0.3s;
 }
