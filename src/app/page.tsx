@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 import { CONFIG } from "../../my-portfolio/src/content";
 import GlassCard from "@/components/GlassCard";
-import MediaCarousel from "@/components/MediaCarousel"; 
-import CommandPalette from "@/components/CommandPalette"; 
+import MediaCarousel from "@/components/MediaCarousel";
+import CommandPalette from "@/components/CommandPalette";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, FileText, Search, Play } from "lucide-react"; 
+import { Github, Linkedin, Twitter, Mail, FileText, Search, Play } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -35,7 +35,7 @@ export default function Home() {
           setEmailCopied(true);
           setTimeout(() => setEmailCopied(false), 1800);
         })
-        .catch(() => {});
+        .catch(() => { });
     }
   };
 
@@ -53,33 +53,33 @@ export default function Home() {
 
   // Scroll reveal - For Individual Card Tracking
   useEffect(() => {
-  const itemObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("item-visible");
-          itemObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-  );
+    const itemObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("item-visible");
+            itemObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
 
-  const selectors = "h1, h2, h3, .education-card, .skills-card, .experience-card, .work-card, .certificate-shimmer, p, .social-button";
-  
-  // 1. Select all items
-  const items = document.querySelectorAll(selectors);
-  
-  items.forEach((item) => {
-    // 2. Check if the item (or its parent) has a 'no-reveal' class
-    if (!item.classList.contains("no-reveal") && !item.closest(".no-reveal")) {
-      item.classList.add("scroll-reveal-item");
-      itemObserver.observe(item);
-    }
-  });
+    const selectors = "h1, h2, h3, .education-card, .skills-card, .experience-card, .work-card, .certificate-shimmer, p, .social-button";
 
-  return () => itemObserver.disconnect();
-}, []);
+    // 1. Select all items
+    const items = document.querySelectorAll(selectors);
+
+    items.forEach((item) => {
+      // 2. Check if the item (or its parent) has a 'no-reveal' class
+      if (!item.classList.contains("no-reveal") && !item.closest(".no-reveal")) {
+        item.classList.add("scroll-reveal-item");
+        itemObserver.observe(item);
+      }
+    });
+
+    return () => itemObserver.disconnect();
+  }, []);
 
   // Dynamic Viewport Focus - The Gaze
   useEffect(() => {
@@ -140,12 +140,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{ background: "var(--body-color)" }}>
-      
+
       {/* COMMAND PALETTE */}
-      <CommandPalette 
-        isOpen={isCommandPaletteOpen} 
-        setIsOpen={setIsCommandPaletteOpen} 
-        handleEmailCopy={handleEmailClick} 
+      <CommandPalette
+        isOpen={isCommandPaletteOpen}
+        setIsOpen={setIsCommandPaletteOpen}
+        handleEmailCopy={handleEmailClick}
       />
 
       {/* TOP-RIGHT SEARCH PILL TRIGGER */}
@@ -205,7 +205,7 @@ export default function Home() {
                   <span className="text-sm sm:text-base">Twitter</span>
                 </a>
               )}
-              
+
               <a href={CONFIG.socialLinks.email} onClick={handleEmailClick} className="social-button magnetic-button flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 hover:bg-white/60" style={{ color: "var(--text-color)" }}>
                 <Mail className="w-5 h-5" style={{ color: "var(--skin-color)" }} />
                 <span className="text-sm sm:text-base">Email</span>
@@ -233,9 +233,9 @@ export default function Home() {
                     <div className="flex-1">
                       <h3 className="text-lg sm:text-xl font-semibold mb-1" style={{ color: "var(--title-color)" }}>{edu.degree}</h3>
                       <p className="text-base font-medium" style={{ color: "var(--text-color)" }}>{edu.institution}</p>
-                      
+
                       {edu.percentage && (
-                        <div 
+                        <div
                           className="inline-block mt-3 mb-1 px-3 py-1.5 rounded-md border text-sm font-bold transition-colors duration-500 bg-[#FFFFFF] [.section-focused_&]:bg-[#EFBF04]"
                           style={{ color: "#456882", borderColor: "#EFBF04" }}
                         >
@@ -243,7 +243,7 @@ export default function Home() {
                         </div>
                       )}
                     </div>
-                    
+
                     <div className="flex flex-col items-start sm:items-end gap-1">
                       <div className="text-sm font-medium" style={{ color: "var(--skin-color)" }}>{edu.duration}</div>
                     </div>
@@ -262,11 +262,11 @@ export default function Home() {
               <h2 className="text-2xl sm:text-3xl font-bold text-center sm:text-left" style={{ color: "var(--title-color)" }}>Skills</h2>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, index) => (
-                  <motion.span 
-                    key={skill} 
-                    initial={{ opacity: 0, y: 6 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    transition={{ duration: 0.35, delay: 0.3 + index * 0.04, ease: [0.22, 1, 0.36, 1] }} 
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, delay: 0.3 + index * 0.04, ease: [0.22, 1, 0.36, 1] }}
                     className="px-3 py-1 text-xs sm:text-sm font-bold rounded-full border transition-colors duration-500 bg-[#FFFFFF] [.section-focused_&]:bg-[#EFBF04] whitespace-nowrap"
                     style={{ color: "#456882", borderColor: "#EFBF04" }}
                   >
@@ -295,7 +295,7 @@ export default function Home() {
                     <MediaCarousel media={project.media} />
                   </div>
                 )}
-                
+
                 <div className="h-full flex flex-col">
                   <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4" style={{ color: "var(--title-color)" }}>{project.title}</h3>
                   <p className="mb-4 sm:mb-6 flex-grow leading-relaxed" style={{ color: "var(--text-color)" }}>{project.description}</p>
@@ -333,41 +333,82 @@ export default function Home() {
 
         {/* --- CERTIFICATES & LICENSES --- */}
         <section className="mt-16 sm:mt-20 lg:mt-24">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>Certificates &amp; Licenses</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
+            Certificates &amp; Licenses
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {certificates.map((cert, index) => {
               const href = cert.linkToFile?.trim();
+
               const Card = (
-                <GlassCard 
-                  delay={0.35 + index * 0.08} 
-                  className={href ? "hover:bg-white/15 transition-colors" : ""}
+                <GlassCard
+                  delay={0.35 + index * 0.08}
+                  className={href ? "hover:bg-white/15 transition-colors flex flex-col h-full" : "flex flex-col h-full"}
                   isCertificate={true}
                 >
                   {cert.media && (
-                    <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4">
+                    <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4 shrink-0">
                       <MediaCarousel media={cert.media} />
                     </div>
                   )}
-                  
-                  <div className="flex flex-col gap-2">
+
+                  <div className="flex flex-col gap-2 flex-grow">
                     <div className="text-lg font-semibold" style={{ color: "var(--title-color)" }}>{cert.name}</div>
-                    <div className="text-sm" style={{ color: "var(--text-color)" }}>{cert.issuer} · {cert.date}</div>
+                    <div className="text-sm" style={{ color: "var(--text-color)" }}>{cert.issuer}</div>
+                    <div className="text-sm" style={{ color: "var(--text-color)" }}>{cert.date}</div>
 
                     {cert.description && (
-                      <p className="text-sm mt-1 mb-2 leading-relaxed" style={{ color: "var(--text-color)", opacity: 0.9 }}>
+                      <p className="text-sm mt-1 mb-4 leading-relaxed" style={{ color: "var(--text-color)", opacity: 0.9 }}>
                         {cert.description}
                       </p>
                     )}
 
-                    {href ? <div className="text-sm font-medium mt-auto" style={{ color: "var(--skin-color)" }}>View credential →</div> : null}
+                    {/* Action Area for Links/Buttons */}
+                    <div className="mt-auto pt-2 flex items-center justify-between flex-wrap gap-2">
+                      {/* Certificate Link Text */}
+                      {href && (
+                        <div className="text-sm font-medium" style={{ color: "var(--skin-color)" }}>
+                          View credential →
+                        </div>
+                      )}
+
+                      {/* Conditional Project Button */}
+                      {cert.linkToProject && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(cert.linkToProject, "_blank", "noopener,noreferrer");
+                          }}
+                          className="relative z-10 px-3 py-1.5 rounded-md border text-xs sm:text-sm font-bold transition-colors duration-500 bg-[#FFFFFF] [.section-focused_&]:bg-[#EFBF04] hover:opacity-80"
+                          style={{
+                            color: "#456882",
+                            borderColor: "#EFBF04"
+                          }}
+                        >
+                          View Project
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </GlassCard>
               );
+
               return href ? (
-                <a key={index} href={href} target="_blank" rel="noopener noreferrer" className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-2xl h-full">
+                <a
+                  key={index}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-2xl h-full"
+                >
                   {Card}
                 </a>
-              ) : <div key={index} className="block h-full">{Card}</div>;
+              ) : (
+                <div key={index} className="block h-full">
+                  {Card}
+                </div>
+              );
             })}
           </div>
         </section>
@@ -389,7 +430,7 @@ export default function Home() {
                 <GlassCard
                   delay={0.3 + index * 0.1}
                   isCertificate={true}
-                  className="work-card certificate-shimmer h-full flex flex-col" 
+                  className="work-card certificate-shimmer h-full flex flex-col"
                 >
                   {service.media && (
                     <div className="relative aspect-video w-full overflow-hidden rounded-xl mb-4">

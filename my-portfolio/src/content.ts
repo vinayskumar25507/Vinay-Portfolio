@@ -25,6 +25,7 @@ export interface Certificate {
   description?: string;
   media?: MediaItem[];
   linkToFile?: string;
+  linkToProject?: string;
 }
 
 export interface Education {
@@ -119,8 +120,8 @@ export const CONFIG: Config = {
       title: "DataScrape AI: CS & Tech Discovery Hub",
       description: "A full-stack, real-time intelligence dashboard for the computer science ecosystem. Built with a React/Vite frontend, the platform automates data extraction using an n8n workflow powered by Google Gemini AI. It intelligently parses live event and course data from GeeksforGeeks and hackathon listings from Unstop, transforming unstructured web content into a structured, actionable student resource.",
       media: [
-        {type: "image", url: "/Project Photos/DataScrape - AI - FE.png"},
-        {type: "image", url: "/Project Photos/DataScrape - AI - BE.png"},
+        { type: "image", url: "/Project Photos/DataScrape - AI - FE.png" },
+        { type: "image", url: "/Project Photos/DataScrape - AI - BE.png" },
       ],
       link: "https://data-scrape-ai.vercel.app",
       techTags: ["React", "Vite", "n8n", "Google Gemini AI", "Vercel"],
@@ -178,13 +179,6 @@ export const CONFIG: Config = {
       techTags: ["JavaScript (ES6+)", "REST API", "LocalStorage", "CSS Grid", "HTML5"],
     },
     {
-      title: "Anime Discovery & Tracker",
-      description: "A feature-rich tracking dashboard using the Jikan (MyAnimeList) API. Developed custom logic for dynamic progress bars, automated status transitions (e.g., 'Watching' to 'Completed'), and persistent data storage using the LocalStorage API.",
-      media: [{ type: "image", url: "/Project Photos/Anime.png" }],
-      link: "https://vinayskumar25507.github.io/VIN-ANIME-TRACKER/",
-      techTags: ["JavaScript (ES6+)", "Jikan API", "LocalStorage", "CSS Grid", "HTML5"],
-    },
-    {
       title: "AI News Summarizer & Distribution",
       description: "A scheduled pipeline that aggregates data from multiple RSS feeds and SerpAPI. It uses LLMs to synthesize a daily tech brief and automates professional email delivery via the Gmail API.",
       media: [{ type: "image", url: "/Project Photos/News Summarizer.png" }],
@@ -206,6 +200,17 @@ export const CONFIG: Config = {
     },
   ],
   certificates: [
+    {
+      name: "NIAT Masterclass: LLM Text Embedding Systems",
+      issuer: "NxtWave of Innovation in Advanced Technologies (NIAT)",
+      date: "24 February 2026",
+      description: "An intensive masterclass delivered by Stuti Gupta (Data Scientist, Flipkart) focusing on the architectural implementation of text embeddings. As the final capstone assignment, I developed and submitted an end-to-end Twitter Sentiment Analysis pipeline. The system leverages the Google Gemini Embedding Model to transform unstructured social media text into semantic vectors, which then serve as high-dimensional features to train a robust XGBoost machine learning classifier for accurate sentiment prediction.",
+      media: [
+        { type: "image", url: "/Certificates/NIAT - MS - 1.png" }
+      ],
+      linkToFile: "/Certificates/NIAT - MS - 1.png",
+      linkToProject: "https://colab.research.google.com/drive/1hiwsVr8i1Z871AP8ABFtmx606U3kLRIE?usp=sharing",
+    },
     {
       name: "Hack the Human Signal - AI & Robotics Workshop",
       issuer: "NxtWave of Innovation in Advanced Technologies (NIAT)",
@@ -236,12 +241,16 @@ export const CONFIG: Config = {
       linkToFile: "/Certificates/BASE44.png",
     },
     {
-      name: "Web Development Course Completion Certificate",
-      issuer: "Launched Global and E-Cell IIT Khargpur",
+      name: "Web Development Certification",
+      issuer: "Launched Global & E-Cell IIT Kharagpur",
       date: "December 2025",
-      description: "Successfully completed a comprehensive Web Development program with a core focus on front-end technologies, including HTML5, CSS3, and modern vanilla JavaScript. Mastered essential web development concepts such as semantic UI structuring, responsive design using CSS Grid and Flexbox, asynchronous event handling, dynamic DOM manipulation, and browser data persistence (LocalStorage).",
-      media: [{ type: "image", url: "/Project Photos/Course Completion - LG.png" }],
+      description: "Completed a comprehensive front-end web development program focused on HTML5, CSS3, and modern JavaScript (ES6+). To apply these core concepts, I developed and deployed the 'Anime Discovery & Tracker' dashboard as a practical capstone. The project demonstrates dynamic DOM manipulation, responsive UI structuring with CSS Grid, asynchronous data fetching via the Jikan (MyAnimeList) API, and persistent browser state management using the LocalStorage API.",
+      media: [
+        { type: "image", url: "/Project Photos/Course Completion - LG.png" },
+        { type: "image", url: "/Project Photos/Anime.png" }
+      ],
       linkToFile: "/Certificates/Certificate of Course Completion - Launched Global.pdf",
+      linkToProject: "https://vinayskumar25507.github.io/VIN-ANIME-TRACKER/",
     },
     {
       name: "Web Development Internship Completion Certificate",
@@ -259,8 +268,8 @@ export const CONFIG: Config = {
       duration: "December 19, 2025",
       description: "Contributed to a life-saving cause through voluntary blood donation at Narayana Health, demonstrating social responsibility and community support.",
       media: [{ type: "image", url: "/Project Photos/Blood Donation - 1.jpg" },
-              { type: "image", url: "/Profile Picture/First Blood Donation - 19 Dec 2025.jpg" },
-            ],
+      { type: "image", url: "/Profile Picture/First Blood Donation - 19 Dec 2025.jpg" },
+      ],
       linkToFile: "/Certificates/Blood Donation - 1.pdf",
     },
   ],
