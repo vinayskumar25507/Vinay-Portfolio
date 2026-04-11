@@ -57,7 +57,6 @@ export default function Home() {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // We only use one clean class now
           entry.target.classList.add("item-visible");
           itemObserver.unobserve(entry.target);
         }
@@ -66,13 +65,17 @@ export default function Home() {
     { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
   );
 
-  // Select headers and cards to be watched
   const selectors = "h1, h2, h3, .education-card, .skills-card, .experience-card, .work-card, .certificate-shimmer, p, .social-button";
+  
+  // 1. Select all items
   const items = document.querySelectorAll(selectors);
   
   items.forEach((item) => {
-    item.classList.add("scroll-reveal-item"); // Base state
-    itemObserver.observe(item);
+    // 2. Check if the item (or its parent) has a 'no-reveal' class
+    if (!item.classList.contains("no-reveal") && !item.closest(".no-reveal")) {
+      item.classList.add("scroll-reveal-item");
+      itemObserver.observe(item);
+    }
   });
 
   return () => itemObserver.disconnect();
@@ -172,7 +175,7 @@ export default function Home() {
                 transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                 className="shrink-0 order-1 md:order-2 md:ml-auto mx-auto md:mx-0"
               >
-                <div className="relative rounded-full p-[4px] bg-white/10 backdrop-blur-xl shadow-lg solar-profile">
+                <div className="relative rounded-full p-[4px] bg-white/10 backdrop-blur-xl shadow-lg solar-profile no-reveal">
                   <Image src={profileImage} alt={`${name} profile photo`} width={112} height={112} className="rounded-full object-cover w-28 h-28 sm:w-32 sm:h-32" priority />
                 </div>
               </motion.div>
