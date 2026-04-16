@@ -148,14 +148,19 @@ export const CONFIG: Config = {
     {
       title: "AI Image Generator Webhook",
       description: "A high-speed image generation workflow triggered by webhooks. It communicates with the Freepik Imagen3 API, manages asynchronous wait states, and returns the generated binary image file.",
-      media: [{ type: "image", url: "/Project Photos/Thumbnail Studio.png" }],
+      media: [
+              { type: "image", url: "/Project Photos/Thumbnail Studio.png" },
+              { type: "image", url: "/Project Photos/AI Image Generator.png" }
+            ],
       link: "https://thumbnail-studio-03d98c9e.base44.app",
       techTags: ["n8n", "Freepik API", "Webhooks", "REST API", "Binary Data"],
     },
     {
       title: "AI Podcast Generator",
       description: "An end-to-end audio production workflow that converts raw topics into conversational scripts via Gemini, then utilizes Murf AI for high-fidelity speech synthesis and distribution.",
-      media: [{ type: "image", url: "/Project Photos/Podcast Spark.png" }],
+      media: [{ type: "image", url: "/Project Photos/Podcast Spark.png" },
+              { type: "image", url: "/Project Photos/AI Podcast Generator.png" }
+            ],
       link: "https://podcast-spark-47b201f4.base44.app/",
       techTags: ["n8n", "Murf AI", "Speech Synthesis", "Google Gemini", "Webhooks"],
     },
