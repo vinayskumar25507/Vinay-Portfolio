@@ -117,16 +117,6 @@ export const CONFIG: Config = {
   ],
   projects: [
     {
-      title: "DataScrape AI: CS & Tech Discovery Hub",
-      description: "A full-stack, real-time intelligence dashboard for the computer science ecosystem. Built with a React/Vite frontend, the platform automates data extraction using an n8n workflow powered by Google Gemini AI. It intelligently parses live event and course data from GeeksforGeeks and hackathon listings from Unstop, transforming unstructured web content into a structured, actionable student resource.",
-      media: [
-        { type: "image", url: "/Project Photos/DataScrape - AI - FE.png" },
-        { type: "image", url: "/Project Photos/DataScrape - AI - BE.png" },
-      ],
-      link: "https://data-scrape-ai.vercel.app",
-      techTags: ["React", "Vite", "n8n", "Google Gemini AI", "Vercel"],
-    },
-    {
       title: "Study Assistant: Dual-Persona AI Tutor",
       description: "An interactive educational web application hosted on Hugging Face Spaces that utilizes the Gemini 2.5 Flash model to break down complex concepts. Built with Gradio, it allows users to toggle between 'Friendly' and 'Academic' AI personas to receive tailored, beginner-friendly explanations enriched with real-world analogies.",
       media: [{ type: "image", url: "/Project Photos/Study Assistant - NIAT - Building LLM Application.png" }],
@@ -205,6 +195,20 @@ export const CONFIG: Config = {
     },
   ],
   certificates: [
+    {
+      name: "AI Agents 201 Hands-On Workshop",
+      issuer: "NxtWave of Innovation in Advanced Technologies (NIAT)",
+      date: "13 April 2026",
+      description: "An immersive workshop exploring the evolution of LLMs into Autonomous AI Agents. Through hands-on sessions, I developed 'DataScrape AI,' a full-stack, real-time intelligence dashboard using an n8n workflow powered by Google Gemini AI to automate data extraction from tech platforms. Additionally, I built a custom global time and weather agent using Google's Agent Development Kit (ADK) and Python.",
+      media: [
+        { type: "image", url: "/Certificates/AI Agents 201 Hands-On Workshop.png" },
+        { type: "image", url: "/Project Photos/Agent Development Kit - NIAT Workshop.png" },
+        { type: "image", url: "/Project Photos/DataScrape - AI - FE.png" },
+        { type: "image", url: "/Project Photos/DataScrape - AI - BE.png" },
+      ],
+      linkToFile: "/Certificates/AI Agents 201 Hands-On Workshop.png",
+      linkToProject: "https://data-scrape-ai.vercel.app"
+    },
     {
       name: "NIAT Masterclass: LLM Text Embedding Systems",
       issuer: "NxtWave of Innovation in Advanced Technologies (NIAT)",
