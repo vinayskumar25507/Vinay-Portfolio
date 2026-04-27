@@ -239,7 +239,7 @@ export default function Home() {
                           className="inline-block mt-3 mb-1 px-3 py-1.5 rounded-md border text-sm font-bold transition-colors duration-500 bg-[#FFFFFF] [.section-focused_&]:bg-[#EFBF04]"
                           style={{ color: "#456882", borderColor: "#EFBF04" }}
                         >
-                          Score: {edu.percentage}
+                          {edu.percentage}
                         </div>
                       )}
                     </div>
