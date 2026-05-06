@@ -95,9 +95,9 @@ export const CONFIG: Config = {
   education: [
     {
       degree: "B.Tech in Computer Science & Engineering",
-      institution: "SVyasa Deemed to be University X Nxtwave of Innovation in Advanced Technologies",
-      duration: "2025 - 2028",
-      details: "Specializing in Generative AI, Robotics, Full Stack Development, and Technical Market Analysis. Actively conducting meta-analysis on Autonomous AI Agents.",
+      institution: "S-VYASA Deemed-to-be University (School of Advanced Studies)\nIn collaboration with NIAT (Nxtwave of Innovation in Advanced Technologies)",
+      duration: "2025 - 2029",
+      details: "UGC-Approved & NAAC A+ Accredited program integrated with NxtWave's Industry Ready Certificate (IRC).\n• Core Engineering: Built a strong foundation in Data Structures, Algorithms, and Relational Databases.\n• Full Stack Development: Learned to build end-to-end web applications utilizing React, Node.js, and Spring Boot.\n• Advanced Tech: Acquired specialized knowledge in Machine Learning, Deep Learning, and Cloud Computing.\n• Professional Skills: Developed analytical problem-solving abilities through Quantitative Aptitude and honed professional communication through Applied English coursework.\n• Practical Application: Translated theoretical concepts into real-world solutions through continuous capstone projects and remote tech internships.",
       percentage: "CGPA: 9.16 / 10",
     },
     {

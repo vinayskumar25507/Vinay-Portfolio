@@ -232,7 +232,7 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
                     <div className="flex-1">
                       <h3 className="text-lg sm:text-xl font-semibold mb-1" style={{ color: "var(--title-color)" }}>{edu.degree}</h3>
-                      <p className="text-base font-medium" style={{ color: "var(--text-color)" }}>{edu.institution}</p>
+                      <p className="text-base font-medium whitespace-pre-line" style={{ color: "var(--text-color)" }}>{edu.institution}</p>
 
                       {edu.percentage && (
                         <div
