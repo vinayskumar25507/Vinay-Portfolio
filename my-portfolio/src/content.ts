@@ -53,6 +53,21 @@ export interface SocialService {
   linkToFile: string;
 }
 
+export interface Research {
+  title: string;
+  authors: string;
+  journal: string;
+  date: string;
+  abstract: string;
+  link?: string;
+}
+
+export interface Hobby {
+  title: string;
+  description: string;
+  media?: MediaItem[];
+}
+
 export interface Config {
   name: string;
   profileImage: string;
@@ -64,6 +79,8 @@ export interface Config {
   experiences: Experience[];
   certificates: Certificate[];
   socialService: SocialService[];
+  research?: Research[];
+  hobbies?: Hobby[];
 }
 
 export const CONFIG: Config = {
@@ -139,9 +156,9 @@ export const CONFIG: Config = {
       title: "AI Image Generator Webhook",
       description: "A high-speed image generation workflow triggered by webhooks. It communicates with the Freepik Imagen3 API, manages asynchronous wait states, and returns the generated binary image file.",
       media: [
-              { type: "image", url: "/Project Photos/Thumbnail Studio.png" },
-              { type: "image", url: "/Project Photos/AI Image Generator.png" }
-            ],
+        { type: "image", url: "/Project Photos/Thumbnail Studio.png" },
+        { type: "image", url: "/Project Photos/AI Image Generator.png" }
+      ],
       link: "https://thumbnail-studio-03d98c9e.base44.app",
       techTags: ["n8n", "Freepik API", "Webhooks", "REST API", "Binary Data"],
     },
@@ -149,8 +166,8 @@ export const CONFIG: Config = {
       title: "AI Podcast Generator",
       description: "An end-to-end audio production workflow that converts raw topics into conversational scripts via Gemini, then utilizes Murf AI for high-fidelity speech synthesis and distribution.",
       media: [{ type: "image", url: "/Project Photos/Podcast Spark.png" },
-              { type: "image", url: "/Project Photos/AI Podcast Generator.png" }
-            ],
+      { type: "image", url: "/Project Photos/AI Podcast Generator.png" }
+      ],
       link: "https://podcast-spark-47b201f4.base44.app/",
       techTags: ["n8n", "Murf AI", "Speech Synthesis", "Google Gemini", "Webhooks"],
     },
@@ -186,6 +203,16 @@ export const CONFIG: Config = {
       techTags: ["n8n", "LinkedIn API", "X API", "Google Sheets", "LLM Chains"],
     },
   ],
+  /*research: [
+    {
+      title: "Evaluating LLM Performance in Autonomous Edge Robotics",
+      authors: "Vinay S Kumar, Prof. [Professor's Name]",
+      journal: "IEEE Conference on AI Robotics (Under Review)",
+      date: "August 2026",
+      abstract: "A systematic review and meta-analysis examining how lightweight generative models like Gemini Flash integrate with edge devices for real-time spatial mapping and gesture recognition.",
+      link: "https://doi.org/your-link-here", // Optional
+    },
+  ],*/
   experiences: [
     {
       company: "Launched Global",
@@ -282,4 +309,13 @@ export const CONFIG: Config = {
       linkToFile: "/Certificates/Blood Donation - 1.pdf",
     },
   ],
+  /*hobbies: [
+    {
+      title: "Currently Reading: Atomic Habits",
+      description: "I'm a big believer in continuous improvement. Currently diving into James Clear's framework for building atomic habits to optimize both my coding workflows and daily routines. \n\nNext on my list: 'System Design Interview' by Alex Xu.",
+      media: [
+        { type: "image", url: "/Hobbies/atomic-habits-cover.jpg" }
+      ],
+    },
+  ],*/
 };

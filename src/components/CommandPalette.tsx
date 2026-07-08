@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, FileText, Briefcase, Code, Mail } from "lucide-react";
+import { Search, FileText, Briefcase, Code, Mail, GraduationCap, Zap, Award, Heart, BookOpen, Coffee } from "lucide-react";
 
 export default function CommandPalette({ isOpen, setIsOpen, handleEmailCopy }: any) {
   const [search, setSearch] = useState("");
@@ -19,9 +19,15 @@ export default function CommandPalette({ isOpen, setIsOpen, handleEmailCopy }: a
 
   const actions = [
     { id: "resume", title: "View Resume", icon: <FileText size={18} />, action: () => window.open("/Personal Information/Vinay S Kumar - Resume.pdf", "_blank") },
-    { id: "projects", title: "Scroll to Projects", icon: <Code size={18} />, action: () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }) },
-    { id: "experience", title: "Scroll to Experience", icon: <Briefcase size={18} />, action: () => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" }) },
     { id: "email", title: "Copy Email", icon: <Mail size={18} />, action: handleEmailCopy },
+    { id: "education", title: "Scroll to Education", icon: <GraduationCap size={18} />, action: () => document.getElementById("education")?.scrollIntoView({ behavior: "smooth" }) },
+    { id: "skills", title: "Scroll to Skills", icon: <Zap size={18} />, action: () => document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" }) },
+    { id: "projects", title: "Scroll to Projects", icon: <Code size={18} />, action: () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }) },
+    { id: "research", title: "Scroll to Research", icon: <BookOpen size={18} />, action: () => document.getElementById("research")?.scrollIntoView({ behavior: "smooth" }) },
+    { id: "experience", title: "Scroll to Experience", icon: <Briefcase size={18} />, action: () => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" }) },
+    { id: "certificates", title: "Scroll to Certificates", icon: <Award size={18} />, action: () => document.getElementById("certificates")?.scrollIntoView({ behavior: "smooth" }) },
+    { id: "community", title: "Scroll to Community Impact", icon: <Heart size={18} />, action: () => document.getElementById("community")?.scrollIntoView({ behavior: "smooth" }) },
+    { id: "hobbies", title: "Scroll to Hobbies", icon: <Coffee size={18} />, action: () => document.getElementById("hobbies")?.scrollIntoView({ behavior: "smooth" }) },
   ];
 
   const filteredActions = actions.filter((action) =>
@@ -36,7 +42,7 @@ export default function CommandPalette({ isOpen, setIsOpen, handleEmailCopy }: a
 
   return (
     <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[20vh] bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
-      <div 
+      <div
         className="w-full max-w-xl bg-gray-900 border border-[#EFBF04]/50 rounded-2xl shadow-[0_0_20px_rgba(239,191,4,0.3)] overflow-hidden"
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
       >

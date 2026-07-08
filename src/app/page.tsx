@@ -20,6 +20,9 @@ export default function Home() {
     projects,
     experiences,
     certificates,
+    socialService,
+    research,
+    hobbies,
   } = CONFIG;
 
   const [emailCopied, setEmailCopied] = useState(false);
@@ -223,7 +226,7 @@ export default function Home() {
         </section>
 
         {/* --- EDUCATION --- */}
-        <section className="mb-16 sm:mb-20 lg:mb-24">
+        <section id="education" className="mb-16 sm:mb-20 lg:mb-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>Education</h2>
           <div className="flex flex-col gap-6 sm:gap-8">
             {education.map((edu, index) => (
@@ -256,7 +259,7 @@ export default function Home() {
         </section>
 
         {/* --- SKILLS --- */}
-        <section className="mb-16 sm:mb-20 lg:mb-24">
+        <section id="skills" className="mb-16 sm:mb-20 lg:mb-24">
           <GlassCard delay={0.25} className="skills-card">
             <div className="flex flex-col gap-4">
               <h2 className="text-2xl sm:text-3xl font-bold text-center sm:text-left" style={{ color: "var(--title-color)" }}>Skills</h2>
@@ -305,6 +308,31 @@ export default function Home() {
           </div>
         </section>
 
+        {/* --- RESEARCH & PUBLICATIONS --- */}
+        {/*<section id="research" className="mt-16 sm:mt-20 lg:mt-24">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
+            Research & Publications
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {CONFIG.research.map((paper, index) => (
+              <GlassCard
+                key={index}
+                delay={0.3 + index * 0.1}
+                link={paper.link}
+                isCertificate={true}
+                className="flex flex-col h-full"
+              >
+                <div className="flex flex-col flex-grow gap-3">
+                  <h3 className="text-xl font-semibold" style={{ color: "var(--title-color)" }}>{paper.title}</h3>
+                  <p className="text-sm font-medium" style={{ color: "var(--skin-color)" }}>{paper.authors}</p>
+                  <p className="text-sm opacity-80" style={{ color: "var(--text-color)" }}>{paper.journal} • {paper.date}</p>
+                  <p className="mt-2 leading-relaxed flex-grow" style={{ color: "var(--text-color)" }}>{paper.abstract}</p>
+                </div>
+              </GlassCard>
+            ))}
+          </div>
+        </section>*/}
+
         {/* --- EXPERIENCES --- */}
         <section id="experience" className="mt-16 sm:mt-20 lg:mt-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>Experiences</h2>
@@ -332,7 +360,7 @@ export default function Home() {
         </section>
 
         {/* --- CERTIFICATES & LICENSES --- */}
-        <section className="mt-16 sm:mt-20 lg:mt-24">
+        <section id="certificates" className="mt-16 sm:mt-20 lg:mt-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
             Certificates &amp; Licenses
           </h2>
@@ -414,9 +442,9 @@ export default function Home() {
         </section>
 
         {/* --- SOCIAL SERVICE SECTION --- */}
-        <section className="mt-16 sm:mt-20 lg:mb-24">
+        <section id="community" className="mt-16 sm:mt-20 lg:mb-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
-            Social Service
+            Community Impact & Leadership
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {CONFIG.socialService.map((service, index) => (
@@ -461,6 +489,26 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* --- BEYOND THE SCREEN (HOBBIES) --- */}
+        {/*<section id="hobbies" className="mt-16 sm:mt-20 lg:mt-24">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
+            Hobbies & Interests
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {CONFIG.hobbies.map((hobby, index) => (
+              <GlassCard key={index} delay={0.4 + index * 0.1}>
+                {hobby.media && (
+                  <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4">
+                    <MediaCarousel media={hobby.media} />
+                  </div>
+                )}
+                <h3 className="text-xl font-bold mb-2" style={{ color: "var(--title-color)" }}>{hobby.title}</h3>
+                <p className="leading-relaxed" style={{ color: "var(--text-color)" }}>{hobby.description}</p>
+              </GlassCard>
+            ))}
+          </div>
+        </section>*/}
 
         {/* --- FOOTER --- */}
         <footer className="mt-24 pb-12 border-t border-gray-900/10 text-center">
