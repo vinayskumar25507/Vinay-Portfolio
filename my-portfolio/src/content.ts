@@ -66,6 +66,7 @@ export interface Hobby {
   title: string;
   description: string;
   media?: MediaItem[];
+  link?: string;
 }
 
 export interface Config {
@@ -80,7 +81,7 @@ export interface Config {
   certificates: Certificate[];
   socialService: SocialService[];
   research?: Research[];
-  hobbies?: Hobby[];
+  hobbies: Hobby[];
 }
 
 export const CONFIG: Config = {
@@ -309,13 +310,30 @@ export const CONFIG: Config = {
       linkToFile: "/Certificates/Blood Donation - 1.pdf",
     },
   ],
-  /*hobbies: [
+  hobbies: [
     {
-      title: "Currently Reading: Atomic Habits",
-      description: "I'm a big believer in continuous improvement. Currently diving into James Clear's framework for building atomic habits to optimize both my coding workflows and daily routines. \n\nNext on my list: 'System Design Interview' by Alex Xu.",
+      title: "Think and Grow Rich",
+      link: "https://youtu.be/DWuM5fCVoWA?si=jQuw7a6eJBBrwZ18",
+      description: "A deep dive into Napoleon Hill's timeless philosophy on achievement. The core message is that intense desire, backed by faith and relentless persistence, is the catalyst for success. It serves as a powerful reminder that cultivating a definitive purpose and mastering my thoughts are the essential first steps toward achieving any major goal.",
       media: [
-        { type: "image", url: "/Hobbies/atomic-habits-cover.jpg" }
-      ],
+        { type: "image", url: "/Hobbies/Think and Grow Rich - Cover.png" }
+      ]
     },
-  ],*/
+    {
+      title: "As a Man Thinketh",
+      link: "https://youtu.be/VeBX4WjhhXs?si=8d7mu31OdbH6Xb8l",
+      description: "An insightful read covering James Allen's classic essay on the power of the mind. The essential takeaway is complete personal responsibility: our character, circumstances, and destiny are the direct reflections of our internal thoughts. It reinforces my belief that by actively elevating and directing my mindset, I can design the external conditions of my life and career.",
+      media: [
+        { type: "image", url: "/Hobbies/As a Man Thinketh - Cover.png" }
+      ]
+    },
+    {
+      title: "You Squared (You²)",
+      link: "https://youtu.be/XRr-t96l_Qw?si=6XHmpEuYT16iJOdb",
+      description: "An impactful guide to exponential success by Price Pritchett. Instead of relying on gradual, linear progress, the book's vital message is about making a 'quantum leap.' It challenges me to abandon conventional, effort-based methods and adopt a radical shift in perspective to achieve explosive growth without simply 'trying harder.'",
+      media: [
+        { type: "image", url: "/Hobbies/You Squared - Cover.png" }
+      ]
+    },
+  ],
 };

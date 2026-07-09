@@ -294,7 +294,7 @@ export default function Home() {
                 isProject={true}
               >
                 {project.media && (
-                  <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl mb-4">
                     <MediaCarousel media={project.media} />
                   </div>
                 )}
@@ -375,7 +375,7 @@ export default function Home() {
                   isCertificate={true}
                 >
                   {cert.media && (
-                    <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4 shrink-0">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-xl mb-4 shrink-0">
                       <MediaCarousel media={cert.media} />
                     </div>
                   )}
@@ -491,15 +491,18 @@ export default function Home() {
         </section>
 
         {/* --- BEYOND THE SCREEN (HOBBIES) --- */}
-        {/*<section id="hobbies" className="mt-16 sm:mt-20 lg:mt-24">
+        <section id="hobbies" className="mt-16 sm:mt-20 lg:mt-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
             Hobbies & Interests
           </h2>
+          <p className="text-base sm:text-lg mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--text-color)" }}>
+          I spend my free time swimming, cooking, and driving. Here is a dedicated log of the books I read to continuously learn and grow.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {CONFIG.hobbies.map((hobby, index) => (
-              <GlassCard key={index} delay={0.4 + index * 0.1}>
+              <GlassCard key={index} delay={0.4 + index * 0.1} link={hobby.link}>
                 {hobby.media && (
-                  <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl mb-4">
                     <MediaCarousel media={hobby.media} />
                   </div>
                 )}
@@ -508,7 +511,7 @@ export default function Home() {
               </GlassCard>
             ))}
           </div>
-        </section>*/}
+        </section>
 
         {/* --- FOOTER --- */}
         <footer className="mt-24 pb-12 border-t border-gray-900/10 text-center">
