@@ -51,6 +51,8 @@ export interface SocialService {
   description: string;
   media?: MediaItem[];
   linkToFile: string;
+  linkToProject?: string;
+  feedbackApiUrl?: string;
 }
 
 export interface Research {
@@ -309,6 +311,18 @@ export const CONFIG: Config = {
       ],
       linkToFile: "/Certificates/Blood Donation - 1.pdf",
     },
+    /*{
+      "organization": "Jnanodaya PU College",
+      "role": "Instructor",
+      "duration": "August 2026",
+      "description": "Conducted the AI News Summarizer Masterclass, guiding students to transform 45 minutes of manual scrolling into a 2-minute automated daily intelligence brief.",
+      media: [{ type: "image", url: "/Project Photos/Blood Donation - 1.jpg" },
+      { type: "image", url: "/Profile Picture/First Blood Donation - 19 Dec 2025.jpg" },
+      ],
+      "linkToFile": "/Certificates/Blood Donation - 1.pdf",
+      "linkToProject": "https://vinayskumar25507.github.io/2026---n8n---Workshop/",
+      "feedbackApiUrl": "https://script.google.com/macros/s/AKfycbyJkZ0AvgeGIGoPvrdcuJjd6-J_z0GK_PUvs4LE379RN6xdOthGGsPqdw-ZtKEbpIlQ/exec",
+    },*/
   ],
   hobbies: [
     {

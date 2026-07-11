@@ -8,6 +8,9 @@ import CommandPalette from "@/components/CommandPalette";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, Mail, FileText, Search, Play } from "lucide-react";
 import Image from "next/image";
+import FloatingNav from "@/components/FloatingNav";
+import NotificationToast from "@/components/NotificationToast";
+import WorkshopFeedback from "@/components/WorkshopFeedback";
 
 export default function Home() {
   const {
@@ -151,13 +154,16 @@ export default function Home() {
         handleEmailCopy={handleEmailClick}
       />
 
+      <FloatingNav />
+      <NotificationToast />
+
       {/* TOP-RIGHT SEARCH PILL TRIGGER */}
       <button
         onClick={() => setIsCommandPaletteOpen(true)}
         className="fixed top-6 right-6 z-50 flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full hover:border-[#EFBF04] hover:shadow-[0_0_15px_rgba(239,191,4,0.4)] transition-all duration-300 group"
       >
-        <Search size={16} className="text-gray-300 group-hover:text-[#EFBF04] transition-colors" />
-        <span className="text-sm font-medium text-gray-300 group-hover:text-white">Search... ⌘K</span>
+        <Search size={16} className="text-gray-500 group-hover:text-[#EFBF04] transition-colors" />
+        <span className="text-sm font-medium text-gray-500 group-hover:text-[#EFBF04]">Search...</span>
       </button>
 
       <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24" style={{ position: "relative", zIndex: 10 }}>
@@ -447,25 +453,26 @@ export default function Home() {
             Community Impact & Leadership
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {CONFIG.socialService.map((service, index) => (
-              <a
-                key={index}
-                href={service.linkToFile}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block group focus:outline-none"
-              >
+            {CONFIG.socialService.map((service: any, index) => {
+              const href = service.linkToFile?.trim();
+
+              const Card = (
                 <GlassCard
                   delay={0.3 + index * 0.1}
                   isCertificate={true}
-                  className="work-card certificate-shimmer h-full flex flex-col"
+                  className={`work-card certificate-shimmer h-full flex flex-col ${href ? "hover:bg-white/15 transition-colors" : ""}`}
                 >
                   {service.media && (
-                    <div className="relative aspect-video w-full overflow-hidden rounded-xl mb-4">
+                    <div className="relative aspect-video w-full overflow-hidden rounded-xl mb-4 shrink-0">
                       <MediaCarousel media={service.media} />
                     </div>
                   )}
+
                   <div className="flex flex-col gap-2 flex-grow">
+
+                    {/* The Dynamic Live Feedback Badge */}
+                    <WorkshopFeedback apiUrl={service.feedbackApiUrl} />
+
                     <h3 className="text-xl font-bold" style={{ color: "var(--title-color)" }}>
                       {service.role}
                     </h3>
@@ -475,18 +482,56 @@ export default function Home() {
                     <p className="text-sm opacity-80" style={{ color: "var(--text-color)" }}>
                       {service.duration}
                     </p>
-                    <p className="text-sm mt-2 whitespace-pre-line" style={{ color: "var(--text-color)" }}>
+                    <p className="text-sm mt-2 mb-4 whitespace-pre-line flex-grow" style={{ color: "var(--text-color)" }}>
                       {service.description}
                     </p>
 
-                    <div className="mt-auto pt-4 text-sm font-bold flex items-center gap-1" style={{ color: "var(--skin-color)" }}>
-                      View Documentation
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    {/* Action Area for Links/Buttons */}
+                    <div className="mt-auto pt-2 flex items-center justify-between flex-wrap gap-2">
+
+                      {/* Main Document Link Text */}
+                      {href && (
+                        <div className="text-sm font-bold flex items-center gap-1" style={{ color: "var(--skin-color)" }}>
+                          View Documentation
+                          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                        </div>
+                      )}
+
+                      {/* Conditional Secondary Button (Like the Workshop Site) */}
+                      {service.linkToProject && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(service.linkToProject, "_blank", "noopener,noreferrer");
+                          }}
+                          className="relative z-10 px-3 py-1.5 rounded-md border text-xs sm:text-sm font-bold transition-colors duration-500 bg-[#FFFFFF] [.section-focused_&]:bg-[#EFBF04] hover:opacity-80"
+                          style={{ color: "#456882", borderColor: "#EFBF04" }}
+                        >
+                          View Workshop
+                        </button>
+                      )}
                     </div>
                   </div>
                 </GlassCard>
-              </a>
-            ))}
+              );
+
+              return href ? (
+                <a
+                  key={index}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-2xl h-full"
+                >
+                  {Card}
+                </a>
+              ) : (
+                <div key={index} className="block group h-full">
+                  {Card}
+                </div>
+              );
+            })}
           </div>
         </section>
 
@@ -496,7 +541,7 @@ export default function Home() {
             Hobbies & Interests
           </h2>
           <p className="text-base sm:text-lg mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--text-color)" }}>
-          I spend my free time swimming, cooking, and driving. Here is a dedicated log of the books I read to continuously learn and grow.
+            I spend my free time swimming, cooking, and driving. Here is a dedicated log of the books I read to continuously learn and grow.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {CONFIG.hobbies.map((hobby, index) => (
