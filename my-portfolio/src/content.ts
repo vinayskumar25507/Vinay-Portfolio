@@ -311,18 +311,29 @@ export const CONFIG: Config = {
       ],
       linkToFile: "/Certificates/Blood Donation - 1.pdf",
     },
-    /*{
+    {
       "organization": "Jnanodaya PU College",
       "role": "Instructor",
-      "duration": "August 2026",
+      "duration": "July 30, 2026",
       "description": "Conducted the AI News Summarizer Masterclass, guiding students to transform 45 minutes of manual scrolling into a 2-minute automated daily intelligence brief.",
-      media: [{ type: "image", url: "/Project Photos/Blood Donation - 1.jpg" },
-      { type: "image", url: "/Profile Picture/First Blood Donation - 19 Dec 2025.jpg" },
+      "media": [
+        {
+          "type": "video",
+          "url": "/Project Videos/JPC/JPC - Workshop Video.mp4"
+        },
+        {
+          "type": "image",
+          "url": "/Project Photos/JPC/JPC - Certificate With Padma Ravi Mam.jpg"
+        },
+        {
+          "type": "image",
+          "url": "/Project Photos/JPC/JPC - n8n Workshop.jpg"
+        },
       ],
-      "linkToFile": "/Certificates/Blood Donation - 1.pdf",
+      "linkToFile": "/Certificates/JPC - n8n Workshop Bonafide Certificate.pdf",
       "linkToProject": "https://vinayskumar25507.github.io/2026---n8n---Workshop/",
-      "feedbackApiUrl": "https://script.google.com/macros/s/AKfycbyJkZ0AvgeGIGoPvrdcuJjd6-J_z0GK_PUvs4LE379RN6xdOthGGsPqdw-ZtKEbpIlQ/exec",
-    },*/
+      "feedbackApiUrl": "https://script.google.com/macros/s/AKfycbyJkZ0AvgeGIGoPvrdcuJjd6-J_z0GK_PUvs4LE379RN6xdOthGGsPqdw-ZtKEbpIlQ/exec"
+    }
   ],
   hobbies: [
     {
