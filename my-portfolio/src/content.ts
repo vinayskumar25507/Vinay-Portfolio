@@ -315,7 +315,7 @@ export const CONFIG: Config = {
       "organization": "Jnanodaya PU College",
       "role": "Instructor",
       "duration": "July 30, 2026",
-      "description": "Conducted the AI News Summarizer Masterclass, guiding students to transform 45 minutes of manual scrolling into a 2-minute automated daily intelligence brief.",
+      "description": "Conducted the AI News Summarizer Workshop, guiding students to transform 45 minutes of manual scrolling into a 2-minute automated daily intelligence brief.",
       "media": [
         {
           "type": "video",
@@ -333,7 +333,34 @@ export const CONFIG: Config = {
       "linkToFile": "/Certificates/JPC - n8n Workshop Bonafide Certificate.pdf",
       "linkToProject": "https://vinayskumar25507.github.io/2026---n8n---Workshop/",
       "feedbackApiUrl": "https://script.google.com/macros/s/AKfycbyJkZ0AvgeGIGoPvrdcuJjd6-J_z0GK_PUvs4LE379RN6xdOthGGsPqdw-ZtKEbpIlQ/exec"
-    }
+    },
+    {
+      "organization": "St. Rossello's Central School",
+      "role": "Instructor",
+      "duration": "July 31, 2026",
+      "description": "Conducted the AI News Summarizer Workshop, guiding students to transform 45 minutes of manual scrolling into a 2-minute automated daily intelligence brief.",
+      "media": [
+        {
+          "type": "video",
+          "url": "/Project Videos/SRCS/NSP - Thanks.mp4"
+        },
+        {
+          "type": "image",
+          "url": "/Project Photos/SRCS/1.jpg"
+        },
+        {
+          "type": "image",
+          "url": "/Project Photos/SRCS/2.jpg"
+        },
+        {
+          "type": "image",
+          "url": "/Project Photos/SRCS/3.jpg"
+        },
+      ],
+      "linkToFile": "/Certificates/SRCS - n8n Workshop Bonafide Certificate.pdf",
+      "linkToProject": "https://vinayskumar25507.github.io/2026---n8n---Workshop/",
+      "feedbackApiUrl": "https://script.google.com/macros/s/AKfycbyJkZ0AvgeGIGoPvrdcuJjd6-J_z0GK_PUvs4LE379RN6xdOthGGsPqdw-ZtKEbpIlQ/exec"
+    },
   ],
   hobbies: [
     {
