@@ -361,6 +361,29 @@ export const CONFIG: Config = {
       "linkToProject": "https://vinayskumar25507.github.io/2026---n8n---Workshop/",
       "feedbackApiUrl": "https://script.google.com/macros/s/AKfycbyJkZ0AvgeGIGoPvrdcuJjd6-J_z0GK_PUvs4LE379RN6xdOthGGsPqdw-ZtKEbpIlQ/exec"
     },
+    {
+      "organization": "Mahaveer Vidya Mandir",
+      "role": "Instructor",
+      "duration": "August 1, 2026",
+      "description": "Conducted the AI News Summarizer Workshop, guiding students to transform 45 minutes of manual scrolling into a 2-minute automated daily intelligence brief.",
+      "media": [
+        {
+          "type": "video",
+          "url": "/Project Videos/MVM/Part - 1.mp4"
+        },
+        {
+          "type": "video",
+          "url": "/Project Videos/MVM/Part - 2.mp4"
+        },
+        {
+          "type": "image",
+          "url": "/Project Photos/MVM/1.jpg"
+        }
+      ],
+      "linkToFile": "/Certificates/MVM - n8n Workshop Bonafide Certificate.pdf",
+      "linkToProject": "https://vinayskumar25507.github.io/2026---n8n---Workshop/",
+      "feedbackApiUrl": "https://script.google.com/macros/s/AKfycbyJkZ0AvgeGIGoPvrdcuJjd6-J_z0GK_PUvs4LE379RN6xdOthGGsPqdw-ZtKEbpIlQ/exec"
+    }
   ],
   hobbies: [
     {
