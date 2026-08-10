@@ -18,6 +18,15 @@ export interface Experience {
   description: string;
 }
 
+export interface Achievement {
+  title: string;
+  organization: string;
+  date: string;
+  description: string;
+  media?: MediaItem[];
+  linkToFile?: string;
+}
+
 export interface Certificate {
   name: string;
   issuer: string;
@@ -82,6 +91,7 @@ export interface Config {
   experiences: Experience[];
   certificates: Certificate[];
   socialService: SocialService[];
+  achievements?: Achievement[];
   research?: Research[];
   hobbies: Hobby[];
 }
@@ -223,6 +233,21 @@ export const CONFIG: Config = {
       duration: "November 2025 - December 2025",
       description: "Developed a responsive web application using JavaScript (ES6+) and the Jikan API to search and manage anime watchlists. Implemented automated progress tracking and LocalStorage persistence to manage user states like Watching and Completed.",
     },
+  ],
+  achievements: [
+    {
+      title: "Academic Excellence Award",
+      organization: "S-VYASA Deemed-to-be University & NIAT",
+      date: "August 10, 2026",
+      description: "Awarded the Academic Excellence Award for outstanding academic performance during the first year of B.Tech. Secured an SGPA of 9.16 (1st Sem), 9.88 (2nd Sem), and an overall CGPA of 9.52. Received the award from Y Mohamadi Begum (Dean of School of Engineering and Technology, S-VYASA) and Sashank Gujjula (Chief Learning Officer, NIAT).",
+      media: [
+        { type: "image", url: "/Achievements/BTECH 1st Year - 2025/10-08-2026 - NIAT Certificate of Achievement_1.jpg" },
+        { type: "image", url: "/Achievements/BTECH 1st Year - 2025/Dean.jpg" },
+        { type: "image", url: "/Achievements/BTECH 1st Year - 2025/CLO.jpg" },
+        { type: "image", url: "/Achievements/BTECH 1st Year - 2025/Group.jpg" }
+      ],
+      linkToFile: "/Certificates/10-08-2026 - NIAT Certificate of Achievement.pdf"
+    }
   ],
   certificates: [
     {

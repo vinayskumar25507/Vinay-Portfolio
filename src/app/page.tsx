@@ -25,6 +25,7 @@ export default function Home() {
     certificates,
     socialService,
     research,
+    achievements,
     hobbies,
   } = CONFIG;
 
@@ -87,31 +88,40 @@ export default function Home() {
     return () => itemObserver.disconnect();
   }, []);
 
-  // Dynamic Viewport Focus - The Gaze
+  // Dynamic Viewport Focus - The Gaze (Expanded Trigger Zone)
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const section = entry.target as HTMLElement;
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            section.classList.remove("section-dimmed");
-            section.classList.add("section-focused");
-          } else {
-            section.classList.remove("section-focused");
-            section.classList.add("section-dimmed");
-          }
-        });
-      },
-      { threshold: 0.5, rootMargin: "-20% 0px -20% 0px" }
-    );
+    const handleScroll = () => {
+      const sections = document.querySelectorAll("section");
+      
+      // Create a "Trigger Zone" in the middle of the screen
+      // It starts 20% down from the top and ends 80% down.
+      const zoneTop = window.scrollY + (window.innerHeight * 0.3);
+      const zoneBottom = window.scrollY + (window.innerHeight * 0.7);
 
-    const sections = document.querySelectorAll("section");
-    sections.forEach((section) => {
-      if (!section.classList.contains("section-focused")) section.classList.add("section-dimmed");
-      observer.observe(section);
-    });
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
 
-    return () => sections.forEach((section) => observer.unobserve(section));
+        // Check if the section overlaps with our Trigger Zone
+        // (i.e., its top has entered the bottom of the zone, and its bottom hasn't left the top)
+        if (sectionTop < zoneBottom && sectionBottom > zoneTop) {
+          section.classList.add("section-focused");
+          section.classList.remove("section-dimmed");
+        } else {
+          section.classList.remove("section-focused");
+          section.classList.add("section-dimmed");
+        }
+      });
+    };
+
+    // Listen for scroll events
+    window.addEventListener("scroll", handleScroll);
+    
+    // Run it once immediately when the page loads
+    handleScroll();
+
+    // Clean up the listener when the component unmounts
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Magnetic Button Effect
@@ -364,6 +374,75 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* --- ACHIEVEMENTS --- */}
+        {achievements && achievements.length > 0 && (
+          <section id="achievements" className="mt-16 sm:mt-20 lg:mt-24">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center sm:text-left" style={{ color: "var(--title-color)" }}>
+              Awards & Achievements
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {achievements.map((achievement, index) => {
+                const href = achievement.linkToFile?.trim();
+
+                const Card = (
+                  <GlassCard
+                    delay={0.3 + index * 0.1}
+                    isCertificate={true}
+                    className={`work-card certificate-shimmer h-full flex flex-col ${href ? "hover:bg-white/15 transition-colors" : ""}`}
+                  >
+                    {achievement.media && (
+                      <div className="relative aspect-video w-full overflow-hidden rounded-xl mb-4 shrink-0">
+                        <MediaCarousel media={achievement.media} />
+                      </div>
+                    )}
+
+                    <div className="flex flex-col gap-2 flex-grow">
+                      <h3 className="text-xl font-bold" style={{ color: "var(--title-color)" }}>
+                        {achievement.title}
+                      </h3>
+                      <p className="font-semibold" style={{ color: "var(--skin-color)" }}>
+                        {achievement.organization}
+                      </p>
+                      <p className="text-sm opacity-80" style={{ color: "var(--text-color)" }}>
+                        {achievement.date}
+                      </p>
+                      <p className="text-sm mt-2 mb-4 whitespace-pre-line flex-grow" style={{ color: "var(--text-color)" }}>
+                        {achievement.description}
+                      </p>
+
+                      {/* Action Area for Links */}
+                      {href && (
+                        <div className="mt-auto pt-2 flex items-center justify-between flex-wrap gap-2">
+                          <div className="text-sm font-bold flex items-center gap-1" style={{ color: "var(--skin-color)" }}>
+                            View Credential
+                            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </GlassCard>
+                );
+
+                return href ? (
+                  <a
+                    key={index}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-2xl h-full"
+                  >
+                    {Card}
+                  </a>
+                ) : (
+                  <div key={index} className="block group h-full">
+                    {Card}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* --- CERTIFICATES & LICENSES --- */}
         <section id="certificates" className="mt-16 sm:mt-20 lg:mt-24">

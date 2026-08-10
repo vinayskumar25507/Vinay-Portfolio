@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, FileText, Briefcase, Code, Mail, GraduationCap, Zap, Award, Heart, BookOpen, Coffee } from "lucide-react";
+import { Search, FileText, Briefcase, Code, Mail, GraduationCap, Zap, Award, Heart, BookOpen, Coffee, Trophy } from "lucide-react";
 
 export default function CommandPalette({ isOpen, setIsOpen, handleEmailCopy }: any) {
   const [search, setSearch] = useState("");
@@ -25,6 +25,7 @@ export default function CommandPalette({ isOpen, setIsOpen, handleEmailCopy }: a
     { id: "projects", title: "Scroll to Projects", icon: <Code size={18} />, action: () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }) },
     { id: "research", title: "Scroll to Research", icon: <BookOpen size={18} />, action: () => document.getElementById("research")?.scrollIntoView({ behavior: "smooth" }) },
     { id: "experience", title: "Scroll to Experience", icon: <Briefcase size={18} />, action: () => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" }) },
+    { id: "achievements", title: "Scroll to Awards & Achievements", icon: <Trophy size={18} />, action: () => document.getElementById("achievements")?.scrollIntoView({ behavior: "smooth" }) },
     { id: "certificates", title: "Scroll to Certificates", icon: <Award size={18} />, action: () => document.getElementById("certificates")?.scrollIntoView({ behavior: "smooth" }) },
     { id: "community", title: "Scroll to Community Impact", icon: <Heart size={18} />, action: () => document.getElementById("community")?.scrollIntoView({ behavior: "smooth" }) },
     { id: "hobbies", title: "Scroll to Hobbies", icon: <Coffee size={18} />, action: () => document.getElementById("hobbies")?.scrollIntoView({ behavior: "smooth" }) },
