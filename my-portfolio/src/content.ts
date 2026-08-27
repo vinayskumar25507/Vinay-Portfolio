@@ -172,7 +172,7 @@ export const CONFIG: Config = {
         { type: "image", url: "/Project Photos/Thumbnail Studio.png" },
         { type: "image", url: "/Project Photos/AI Image Generator.png" }
       ],
-      link: "https://thumbnail-studio-03d98c9e.base44.app",
+      /*link: "https://thumbnail-studio-03d98c9e.base44.app",*/
       techTags: ["n8n", "Freepik API", "Webhooks", "REST API", "Binary Data"],
     },
     {
@@ -181,7 +181,7 @@ export const CONFIG: Config = {
       media: [{ type: "image", url: "/Project Photos/Podcast Spark.png" },
       { type: "image", url: "/Project Photos/AI Podcast Generator.png" }
       ],
-      link: "https://podcast-spark-47b201f4.base44.app/",
+      /*link: "https://podcast-spark-47b201f4.base44.app/",*/
       techTags: ["n8n", "Murf AI", "Speech Synthesis", "Google Gemini", "Webhooks"],
     },
     {
